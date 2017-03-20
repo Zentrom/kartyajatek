@@ -1,0 +1,2 @@
+# kartyajatek
+[PrEszk] Kártyajáték projekt
