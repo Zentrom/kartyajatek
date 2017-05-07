@@ -5,7 +5,10 @@ package edu.elte.ik.preszk.cardgame;
  *
  */
 import java.util.*;
+import java.io.*;
 
+import edu.elte.ik.preszk.cardgame.gamblingGames.*;
+import edu.elte.ik.preszk.cardgame.casualGames.*;
  
 public class App 
 {
@@ -15,18 +18,20 @@ public class App
 		
         System.out.println( "\nKerem valasszon a menupontok kozul?\n" );
 		
-		while(valasztas!=0&&valasztas!=1&&valasztas!=2){       //eleg gagyi
-			try{
-				System.out.println( "1.Szerencse-kartyajatekok" );
-				System.out.println( "2.Sima kartyajatekok" );
-				System.out.println( "0.Kilepes" );
+		try{
+			BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+			while(valasztas!=0&&valasztas!=1&&valasztas!=2){       //eleg gagyi
 				
-				Scanner stdin = new Scanner(System.in);
-				valasztas = stdin.nextInt();
-				stdin.close();
-			}catch(NoSuchElementException No){
-				System.out.println("Nem jo erteket adott meg!");
+					System.out.println( "1.Szerencse-kartyajatekok" );
+					System.out.println( "2.Sima kartyajatekok" );
+					System.out.println( "0.Kilepes" );
+					
+					valasztas = Integer.parseInt(stdin.readLine());
+				
 			}
+			stdin.close();
+		}catch(IOException io){
+			System.out.println("Nem jo erteket adott meg!");
 		}
 		switch (valasztas){
 			case 1:
