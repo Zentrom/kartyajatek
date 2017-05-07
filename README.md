@@ -12,7 +12,12 @@
   * SzerencseJatek.java
   -Szerencsejátékos kártyajátékok menüje. 
   -Be kell lépni/regisztrálni(adatok "data" fileba).
-    * BlackJack.java
-    -BlackJack implementációja.
+    * BlackJackClient.java
+    -BlackJack kliens implementációja.
+    * BlackJackServer.java
+    -BlackJack szerver implementáció.
     * Poker.java
     -Póker implementációja.
+* Deck.java 
+-Paklit létrehoz&visszaad egy Map<szin,Map<szam,érték>>-ben.(nembiztos hogy jó még)
+-Paraméter hamis:francia/igaz:magyar

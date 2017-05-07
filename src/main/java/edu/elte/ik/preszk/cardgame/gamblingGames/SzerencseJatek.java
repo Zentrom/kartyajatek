@@ -110,8 +110,8 @@ public class SzerencseJatek{
 		};
 		switch (valasztas){
 			case 1:
-				BlackJack blackjack = new BlackJack();
-				break;
+				BlackJackClient blackjack = new BlackJackClient();          //az elso kliens ha nem tud csatlakozni a serverre
+				break;														//akk elkéne inditsa BlackJackServer-t külön consoleba.
 			case 2:
 				Poker poker = new Poker();
 				break;
