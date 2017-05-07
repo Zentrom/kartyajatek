@@ -12,13 +12,13 @@ import edu.elte.ik.preszk.cardgame.casualGames.*;
  
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws IOException
     {
 		int valasztas=-1;
 		
         System.out.println( "\nKerem valasszon a menupontok kozul?\n" );
 		
-		try{
+		//try{
 			BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 			while(valasztas!=0&&valasztas!=1&&valasztas!=2){       //eleg gagyi
 				
@@ -29,10 +29,10 @@ public class App
 					valasztas = Integer.parseInt(stdin.readLine());
 				
 			}
-			stdin.close();
-		}catch(IOException io){
-			System.out.println("Nem jo erteket adott meg!");
-		}
+			//stdin.close();
+		//}catch(IOException io){
+		//	System.out.println("Nem jo erteket adott meg!");
+		//}
 		switch (valasztas){
 			case 1:
 				SzerencseJatek szerencseJ = new SzerencseJatek();

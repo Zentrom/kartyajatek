@@ -10,18 +10,20 @@ public class SzerencseJatek{
 	private int vagyon;
 	private final String dataFile="data";
 	
-	public SzerencseJatek(){
+	private BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+	
+	public SzerencseJatek() throws IOException{
 		printMenu();
 	}
 
-	private void printMenu(){				//kiirja a menut
+	private void printMenu() throws IOException {				//kiirja a menut
 		System.out.println("Kerem jelentkezzen be!");
 		System.out.println("(Ha meg nincs fiokja regisztraljon)");
 		
-		int valasztas=-1;
+		int valasztas= -1;
+		String str = "";
 		
-		try{
-			BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+		//try{
 			while(valasztas!=0&&valasztas!=1&&valasztas!=2){
 				
 				System.out.println("1.Bejelentkezes");
@@ -31,11 +33,9 @@ public class SzerencseJatek{
 				valasztas = Integer.parseInt(stdin.readLine());
 				
 			}
-			stdin.close();
-		}catch(IOException io){
-			System.out.println("Nem jo erteket adott meg!");
-			valasztas = 1;
-		}
+		//}catch(IOException io){
+		//	System.out.println("Nem jo erteket adott meg!" + io.getMessage());
+		//}
 		switch (valasztas){
 			case 1:
 				Belepes();
@@ -44,25 +44,27 @@ public class SzerencseJatek{
 				Regisztracio();
 				break;
 			default:
+				stdin.close();
 				break;
 		}
 	}
 	
-	private void Belepes(){				//belepest kezeli
-		Scanner stdin = new Scanner(System.in);
+	private void Belepes() throws IOException{				//belepest kezeli
 		System.out.println("Kerem adja meg a felhasznalonevet!");
-		this.username=stdin.nextLine();
+		this.username=stdin.readLine();
 		
 		String tmpPw = "";
+		String tmpIn[];
 		Boolean sikeresBelepes = false;
 		try{
 			Scanner readFile = new Scanner(new File(dataFile));
-			while(readFile.hasNextLine()){
+			while(readFile.hasNext()){
 				if(username.equals(readFile.next())){
 					tmpPw=readFile.next();
 					for(int i=0;i<3;i++){
 						System.out.println("Kerem adja meg a jelszavat!");
-						if(tmpPw.equals(stdin.next())){
+						tmpIn = stdin.readLine().split(" ");
+						if(tmpPw.equals(tmpIn[0])){
 							sikeresBelepes = true;
 							this.password=tmpPw;
 							this.vagyon=Integer.parseInt(readFile.next());
@@ -77,25 +79,22 @@ public class SzerencseJatek{
 		}
 		
 		if(sikeresBelepes){
-			stdin.close();
 			SikeresBelepes();
 			
 		}else{
-			System.out.println("Nem sikerult 3 probabol a jelszo!");
-			stdin.close();
+			System.out.println("Nem sikerult belepni!");
 			printMenu();
 		}
 		
 	}
 	
-	private void SikeresBelepes(){ 			//menu mikor sikeres volt a bejelentkezes
+	private void SikeresBelepes() throws IOException{ 			//menu mikor sikeres volt a bejelentkezes
 	
 		System.out.println("Sikerult a belepes,udvozoljuk!");
 		System.out.println("A jelenlegi egyenlege: "+vagyon+" dollar\n");
 		
 		int valasztas=-1;
 		
-		Scanner stdin = new Scanner(System.in);
 		while(valasztas!=0&&valasztas!=1&&valasztas!=2&&valasztas!=3){
 			try{
 				System.out.println("1.BlackJack");
@@ -103,13 +102,12 @@ public class SzerencseJatek{
 				System.out.println("3.Nincs penzem");
 				System.out.println("0.Kilepes");
 				
-				valasztas = Integer.parseInt(stdin.nextLine());
+				valasztas = Integer.parseInt(stdin.readLine());
 				
 			}catch(NoSuchElementException No){
 				System.out.println("Nem jo erteket adott meg!");
 			}
-		}
-		stdin.close();
+		};
 		switch (valasztas){
 			case 1:
 				BlackJack blackjack = new BlackJack();
@@ -121,21 +119,21 @@ public class SzerencseJatek{
 				RestoreCredits();
 				break;
 			default:
+				stdin.close();
 				break;
 		}
 		
 	}
 	
-	private void Regisztracio(){			//reget kezeli
+	private void Regisztracio() throws IOException{			//reget kezeli
 		
-		Scanner stdin = new Scanner(System.in);
 		System.out.println("Kerem adjon meg egy felhasznalonevet!");
-		this.username=stdin.nextLine();
+		this.username=stdin.readLine();
 		
 		Boolean vanMarIlyen = false;
 		try{
 			Scanner readFile = new Scanner(new File(dataFile));
-			while(readFile.hasNextLine()){
+			while(readFile.hasNext()){
 				if(username.equals(readFile.next())){
 					vanMarIlyen = true;
 					break;
@@ -148,15 +146,13 @@ public class SzerencseJatek{
 		
 		if(vanMarIlyen){
 			System.out.println("Mar letezik ilyen felhasznalonev!");
-			stdin.close();
 			printMenu();
 		}else{
 			System.out.println("Kerem adjon meg egy jelszot!");
-			this.password=stdin.nextLine();
-			stdin.close();
+			this.password=stdin.readLine();
 			
 			try{
-				PrintWriter updateData = new PrintWriter(new File(dataFile));
+				PrintWriter updateData = new PrintWriter(new FileOutputStream(new File(dataFile),true /*append*/));
 				updateData.print(username+"\t");
 				updateData.println(password + "\t1000");
 				updateData.close();
@@ -169,7 +165,7 @@ public class SzerencseJatek{
 		}
 	}
 	
-	private void RestoreCredits(){			//visszaallitja az egyenleget az alapertekre
+	private void RestoreCredits() throws IOException{			//visszaallitja az egyenleget az alapertekre
 		if(this.vagyon==0){
 			this.vagyon=1000;
 			System.out.println("A keresztapa adott kolcson 1000 dollart amit nem ker vissza!");
