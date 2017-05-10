@@ -64,4 +64,20 @@ public class Deck {
                 }
             } 
         }
+        
+        //megadott lap lekérése a pakliból
+        public void getLap(String szin, int szam){
+            for (String name: pakli.keySet()){
+                if(name == szin){
+                    name = name.toString();
+                    for(Integer num : belsoMap.keySet()){
+                        if(num == szam){
+                            String num_value = belsoMap.get(num).toString();
+                            System.out.println(name + " " + num_value);
+                        }
+                    }
+                }
+
+            }
+        }
 }
