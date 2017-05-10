@@ -28,7 +28,8 @@ public class KartyaJatek{
                                         }
 				
 			}
-			stdin.close();
+                        //nem szabad lezárni a streamet mert többet nem tudjuk a programban használni
+			//stdin.close();
 		}catch(IOException io){
 			System.out.println("Nem jo erteket adott meg!");
 		}
