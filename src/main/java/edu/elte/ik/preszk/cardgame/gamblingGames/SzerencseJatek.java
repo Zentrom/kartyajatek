@@ -30,7 +30,13 @@ public class SzerencseJatek{
 				System.out.println("2.Regisztracio");
 				System.out.println("0.Kilepes");
 				
-				valasztas = Integer.parseInt(stdin.readLine());
+                                //int ellenőrzés
+				try{
+                                    valasztas = Integer.parseInt(stdin.readLine());
+                                } catch (NumberFormatException ex){
+                                    System.out.println("Írjon be egy számot!!");
+                                    valasztas = -1;
+                                }
 				
 			}
 		//}catch(IOException io){
@@ -102,7 +108,12 @@ public class SzerencseJatek{
 				System.out.println("3.Nincs penzem");
 				System.out.println("0.Kilepes");
 				
-				valasztas = Integer.parseInt(stdin.readLine());
+				try{
+                                    valasztas = Integer.parseInt(stdin.readLine());
+                                } catch (NumberFormatException ex){
+                                    System.out.println("Írjon be egy számot!!");
+                                    valasztas = -1;
+                                }
 				
 			}catch(NoSuchElementException No){
 				System.out.println("Nem jo erteket adott meg!");
