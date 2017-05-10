@@ -37,6 +37,8 @@ public class KartyaJatek{
 				break;
 			case 2:
 				Passziansz passziansz = new Passziansz();
+                                //passziánsz game metódusa, elindítja a játékot
+                                passziansz.game();
 				break;
 			default:
 				break;
