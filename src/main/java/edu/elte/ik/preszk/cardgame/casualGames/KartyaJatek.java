@@ -19,7 +19,12 @@ public class KartyaJatek{
 					System.out.println( "2.Passziansz" );
 					System.out.println( "0.Kilepes" );
 					
-					valasztas = Integer.parseInt(stdin.readLine());
+                                        try{
+                                            valasztas = Integer.parseInt(stdin.readLine());
+                                        } catch (NumberFormatException ex){
+                                            System.out.println("Írjon be egy számot!!");
+                                            valasztas = -1;
+                                        }
 				
 			}
 			stdin.close();
