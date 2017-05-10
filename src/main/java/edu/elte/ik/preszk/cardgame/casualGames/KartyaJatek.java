@@ -13,10 +13,11 @@ public class KartyaJatek{
 		
 		try{
 			BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
-			while(valasztas!=0&&valasztas!=1&&valasztas!=2){       
+			while(valasztas!=0&&valasztas!=1&&valasztas!=2&&valasztas!=3){       
 				
 					System.out.println( "1.Admiralis" );
 					System.out.println( "2.Passziansz" );
+                                        System.out.println( "3.Treff-nem" );
 					System.out.println( "0.Kilepes" );
 					
                                         try{
@@ -40,6 +41,11 @@ public class KartyaJatek{
                                 //passziánsz game metódusa, elindítja a játékot
                                 passziansz.game();
 				break;
+                        case 3:
+                            Treffnem treffnem = new Treffnem();
+                            //treffnem game metódusa, elindítja a játékot
+                            treffnem.game();
+                            break;
 			default:
 				break;
 		}
