@@ -5,7 +5,7 @@ import java.util.*;
 
 public class KartyaJatek{
 	
-	public KartyaJatek()
+	public KartyaJatek() throws IOException
     {
 		int valasztas=-1;
 		
