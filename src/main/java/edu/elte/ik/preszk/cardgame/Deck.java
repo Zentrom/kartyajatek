@@ -3,13 +3,13 @@ package edu.elte.ik.preszk.cardgame;
 import java.util.*;
 import java.io.*;
 
- 
+
 public class Deck {
 	
 	private Map <Integer,String> belsoMap = new TreeMap<Integer,String>();
     private HashMap <String,Map<Integer,String>> pakli = new HashMap<String,Map<Integer,String>>();
 	
-	public Deck(Boolean magyarKartya){          //hamis-francia  igaz-magyar
+	public Deck(boolean magyarKartya){          //hamis-francia  igaz-magyar
 		if(magyarKartya){
 			belsoMap.put(7,"VII");
 			belsoMap.put(8,"VIII");
@@ -50,4 +50,34 @@ public class Deck {
 	public HashMap<String,Map<Integer,String>> getPakli(){
 		return this.pakli;
 	}
+        
+        //a pakli kiiratása
+        public void printDeck(){
+            System.err.println("Pakli kiírása");
+            
+            for (String name: pakli.keySet()){
+                String key = name.toString();
+                for(Integer num : belsoMap.keySet()){
+                    String value = pakli.get(name).toString();
+                    String num_value = belsoMap.get(num).toString();
+                    System.out.println(key + " " + num_value);
+                }
+            } 
+        }
+        
+        //megadott lap lekérése a pakliból
+        public void getLap(String szin, int szam){
+            for (String name: pakli.keySet()){
+                if(name == szin){
+                    name = name.toString();
+                    for(Integer num : belsoMap.keySet()){
+                        if(num == szam){
+                            String num_value = belsoMap.get(num).toString();
+                            System.out.println(name + " " + num_value);
+                        }
+                    }
+                }
+
+            }
+        }
 }

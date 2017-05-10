@@ -5,7 +5,7 @@ import java.util.*;
 
 public class KartyaJatek{
 	
-	public KartyaJatek()
+	public KartyaJatek() throws IOException
     {
 		int valasztas=-1;
 		
@@ -13,16 +13,23 @@ public class KartyaJatek{
 		
 		try{
 			BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
-			while(valasztas!=0&&valasztas!=1&&valasztas!=2){       
+			while(valasztas!=0&&valasztas!=1&&valasztas!=2&&valasztas!=3){       
 				
 					System.out.println( "1.Admiralis" );
 					System.out.println( "2.Passziansz" );
+                                        System.out.println( "3.Treff-nem" );
 					System.out.println( "0.Kilepes" );
 					
-					valasztas = Integer.parseInt(stdin.readLine());
+                                        try{
+                                            valasztas = Integer.parseInt(stdin.readLine());
+                                        } catch (NumberFormatException ex){
+                                            System.out.println("Írjon be egy számot!!");
+                                            valasztas = -1;
+                                        }
 				
 			}
-			stdin.close();
+                        //nem szabad lezárni a streamet mert többet nem tudjuk a programban használni
+			//stdin.close();
 		}catch(IOException io){
 			System.out.println("Nem jo erteket adott meg!");
 		}
@@ -32,7 +39,14 @@ public class KartyaJatek{
 				break;
 			case 2:
 				Passziansz passziansz = new Passziansz();
+                                //passziánsz game metódusa, elindítja a játékot
+                                passziansz.game();
 				break;
+                        case 3:
+                            Treffnem treffnem = new Treffnem();
+                            //treffnem game metódusa, elindítja a játékot
+                            treffnem.game();
+                            break;
 			default:
 				break;
 		}

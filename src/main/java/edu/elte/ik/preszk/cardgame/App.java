@@ -26,7 +26,12 @@ public class App
 					System.out.println( "2.Sima kartyajatekok" );
 					System.out.println( "0.Kilepes" );
 					
-					valasztas = Integer.parseInt(stdin.readLine());
+					try{
+                                            valasztas = Integer.parseInt(stdin.readLine());
+                                        } catch (NumberFormatException ex){
+                                            System.out.println("Írjon be egy számot!!");
+                                            valasztas = -1;
+                                        }
 				
 			}
 			//stdin.close();
