@@ -121,19 +121,28 @@ public class SzerencseJatek{
 		};
 		switch (valasztas){
 			case 1:
-				BlackJackClient blackjack = new BlackJackClient();          //az elso kliens ha nem tud csatlakozni a serverre
-				break;														//akk elkéne inditsa BlackJackServer-t külön consoleba.
+				BlackJackClient blackjack = new BlackJackClient(username,vagyon);   //az elso kliens ha nem tud csatlakozni a serverre
+				this.vagyon= blackjack.play();										//akk elkéne inditsa BlackJackServer-t külön consoleba.
+				updateStoredCredits();	
+				SikeresBelepes();				
+				break;														
 			case 2:
-				Poker poker = new Poker();
+				PokerClient poker = new PokerClient(username,vagyon);
+				this.vagyon = poker.play();
+				updateStoredCredits();
+				SikeresBelepes();
 				break;
 			case 3:
 				RestoreCredits();
+				updateStoredCredits();
+				SikeresBelepes();
 				break;
 			default:
 				stdin.close();
 				break;
 		}
 		
+		//System.out.println("Koszonjuk hogy ittvolt! Vegso vagyona: " + this.vagyon);
 	}
 	
 	private void Regisztracio() throws IOException{			//reget kezeli
@@ -183,9 +192,32 @@ public class SzerencseJatek{
 		}else{
 			System.out.println("Hazugsag!Meg van!");
 		}
-		SikeresBelepes();
 	}
 	
+	private void updateStoredCredits() throws IOException{
+		File inputFile = new File("data");
+		File tempFile = new File("myTempdata");
+
+		BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+		String lineToSearch = this.username;
+		String currentLine;
+
+		while((currentLine = reader.readLine()) != null) {
+			String tmp[] = currentLine.split("\t");
+			if(tmp[0].equals(lineToSearch)){
+				writer.write(this.username +"\t"+ this.password +"\t"+ this.vagyon + System.getProperty("line.separator"));
+			}else{
+				writer.write(currentLine + System.getProperty("line.separator"));
+			}
+		}
+		writer.close(); 
+		reader.close();
+		inputFile.delete();
+		//boolean successful = 
+		tempFile.renameTo(inputFile);
+	}
 	
 	public String getUsername(){
 		return this.username;

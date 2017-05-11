@@ -9,6 +9,8 @@
     -Admiralis kártyajáték implementáció.
     * Passziánsz.java 
     -Passziánsz játék implementáció.
+    * Treffnem.java 
+    -Treff-nem játék implementáció.
   * SzerencseJatek.java
   -Szerencsejátékos kártyajátékok menüje. 
   -Be kell lépni/regisztrálni(adatok "data" fileba).
@@ -21,3 +23,5 @@
 * Deck.java 
 -Paklit létrehoz&visszaad egy Map<szin,Map<szam,érték>>-ben.(nembiztos hogy jó még)
 -Paraméter hamis:francia/igaz:magyar
+-Pakli elemeinek kiiratása
+-Pakli egy lapjának kiírása

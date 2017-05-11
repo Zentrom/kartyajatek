@@ -35,10 +35,10 @@ public class Treffnem {
                 
                 Random random = new Random();
                 String szintomb[] = {"Clover" , "Spades" , "Hearts" , "Diamonds"};
-                String szin = szintomb[random.nextInt(3)];
+                String szin = szintomb[random.nextInt(4)];
                 int szamtomb[] = {2,3,4,5,6,7,8,9,10,11,20,30,40};
                 int szam = szamtomb[random.nextInt(13)];
-                pakli.getLap(szin, szam);
+                System.out.println(pakli.getLap(szin, szam));
                 
                 if(szin.equals("Clover")){
                     if(choose.equals("igen"))
