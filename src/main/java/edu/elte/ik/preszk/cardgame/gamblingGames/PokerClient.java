@@ -4,13 +4,13 @@ import java.io.*;
 import java.util.*;
 import java.net.*;
 
-public class BlackJackClient{
+public class PokerClient{
 	
-	public BlackJackClient(String username,int vagyon){
+	public PokerClient(String username,int vagyon){
 		
 	}
 	
 	public int play(){
-		return 0;
+		return 1000;
 	}
 }
