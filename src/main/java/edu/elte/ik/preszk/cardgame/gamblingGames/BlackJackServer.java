@@ -29,6 +29,7 @@ class Jatek extends Thread{
 	//=new BJCardHandler();
 	Boolean jatekVege=false;
 	String currentCard;
+	int kor = 0;
 	
 	String dealerKartyak[]= new String[5];
 	int dealerPoints[]= new int[5];
@@ -36,7 +37,9 @@ class Jatek extends Thread{
 	String firstJatekos;
 	String firstJatekosKartyak[][]= new String[4][5];
 	int firstBet;
+	int firstSzal = 0;
 	int firstPoints[][]= new int[4][5];
+	int firstJatekosState = -1;
 	
 	//String secondjatekos;
 	Random r=new Random();
@@ -50,7 +53,7 @@ class Jatek extends Thread{
 		this.firstClient=firstClient;
 		folytatodik++;
 		
-		//reset();
+		reset();
 		//this.secondClient=secondClient;
 	}
 	
@@ -70,27 +73,61 @@ class Jatek extends Thread{
 				firstBet=Integer.parseInt(fsc.nextLine());
 				
 				jatekVege=false;
-				while(jatekVege!=true){
+				while(jatekVege!=true && kor<2){
 					
 					currentCard=bjHandler.getNextCardName();
 					//int firstPoints[0][0]=bjHandler.getCardValue(currentCard);
+					if(bjHandler.getCardValue(currentCard)==11){
+						firstSzal++;
+						firstPoints[firstSzal][kor] = 1;
+						firstJatekosKartyak[firstSzal][kor] = currentCard;
+					}
+					firstPoints[0][kor] = bjHandler.getCardValue(currentCard);
+					firstJatekosKartyak[0][kor]=currentCard;
+					fpw.println(firstJatekos + " kartyat kapott: " + firstJatekosKartyak[0][kor]);
+					System.out.println(firstJatekos + " kartyat kapott: " + firstJatekosKartyak[0][kor]);
 					
-					if(firstPoints[0][0] == 11) firstPoints[1][0] = 1;
+					currentCard=bjHandler.getNextCardName();
+					dealerPoints[kor] = (kor==1?-1:bjHandler.getCardValue(currentCard));
+					dealerKartyak[kor] = currentCard;
+					fpw.println("A dealer kartyat kapott: " + (kor!=1?dealerKartyak[kor]:"fejjel lefele van."));
+					System.out.println("A dealer kartyat kapott: " + (kor!=1?dealerKartyak[kor]:"fejjel lefele van."));
 					
-																											//INNEN KELL FOLYTASSAM!!!!
-																											//
-																											//
-																											//
-																											
-																											//
-																											
-																											
-																											
-																											
-																											//
-																											
-																											//
+					kor++;
+					
 				}
+				firstJatekosState=jatekHandler();
+				while(firstJatekosState==0){
+					fpw.println("Mit szeretne tenni?\n4.Kerek meg egy lapot!\n5.Megallok!");
+					int firstJatekosState = Integer.parseInt(fsc.nextLine());
+					
+					if(firstJatekosState==4){												//4-es state a lapkeres
+						currentCard=bjHandler.getNextCardName();
+						firstPoints[0][kor] = bjHandler.getCardValue(currentCard);
+						firstJatekosKartyak[0][kor]=currentCard;
+						fpw.println(firstJatekos + " kartyat kapott: " + firstJatekosKartyak[0][kor]);
+						System.out.println(firstJatekos + " kartyat kapott: " + firstJatekosKartyak[0][kor]);
+						jatekHandler();
+					}else{																		//5-os state a megallas
+						if(kor==2){
+							dealerPoints[kor-1] = bjHandler.getCardValue(currentCard);
+							fpw.println("A dealer felfedte a lapot: " + dealerKartyak[kor]);
+							System.out.println("A dealer felfedte a lapot: " + dealerKartyak[kor]);
+						}else{
+							currentCard=bjHandler.getNextCardName();
+							dealerPoints[kor] = bjHandler.getCardValue(currentCard);
+							dealerKartyak[kor] = currentCard;
+							fpw.println("A dealer kartyat kapott: " + dealerKartyak[kor]);
+							System.out.println("A dealer kartyat kapott: " + dealerKartyak[kor]);
+						}
+						jatekHandler();
+					}
+				}
+				
+				if(firstJatekosState==1)fpw.println("STATE WIN");
+				else if(firstJatekosState==2)fpw.println("STATE PUSH");
+				else if(firstJatekosState==3)fpw.println("STATE LOSE");
+				
 			}
 			
 			fsc.close();
@@ -110,8 +147,44 @@ class Jatek extends Thread{
 		return vissza;
 	}
 	
+	private int jatekHandler(){                           //jatekos-állapotot módosít 1-re ha nyert 2,ha döntetlen,3 ha vesztett
+		//int osszeg=0;
+		//int vissza=0;
+		Boolean kiesettE=true;
+		for(int i=0;i<=firstSzal;i++){
+			if(osszesit(firstPoints[i])<22){
+				kiesettE = false;
+				if(osszesit(firstPoints[i])==21){
+					return 1;
+				}
+			}
+		}
+		if(kiesettE) return 3;
+		if(osszesit(dealerPoints)>21){
+			return 1;
+		}else if(osszesit(dealerPoints)>17){
+			//if(nev.equals(firstJatekos)){
+				for(int i=0;i<=firstSzal;i++){
+					if(osszesit(firstPoints[i])>osszesit(dealerPoints)){
+						return 1;
+					}
+				}
+				for(int i=0;i<=firstSzal;i++){
+					if(osszesit(firstPoints[i])==osszesit(dealerPoints)){
+						return 2;
+					}
+				}
+						return 3;
+			//}
+		}
+		return 0;
+		
+	}
+	
 	private void reset(){								//visszaallit mindent alapertekre
+		kor = 0;
 		firstBet = 0;
+		firstSzal = 0;
 		bjHandler=new BJCardHandler();
 		
 		//this.dealerKartyak[]=new String[5]("","","","","");
