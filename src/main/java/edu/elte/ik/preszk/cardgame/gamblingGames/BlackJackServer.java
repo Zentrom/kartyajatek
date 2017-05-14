@@ -17,6 +17,12 @@ public class BlackJackServer{
 		Jatek jatek = new Jatek(server,firstClient);
 		jatek.start();
 	}
+	
+	public static void main (String args[]) throws IOException{
+		//BlackJackServer bjServer= new BlackJackServer();
+		
+		
+	}
 }
 
 class Jatek extends Thread{
@@ -128,11 +134,13 @@ class Jatek extends Thread{
 				else if(firstJatekosState==2)fpw.println("STATE PUSH");
 				else if(firstJatekosState==3)fpw.println("STATE LOSE");
 				
+				//System.out.println("Vege a jateknak! Lesz folytatas?");
+				//pw.println("Szeretne folytatni?igen/nem");
 			}
 			
 			fsc.close();
 			fpw.close();
-			
+			firstClient.close();
 
 		}catch(IOException e){
 			System.out.println("Szerver Iras-olvasasi hiba");
