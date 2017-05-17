@@ -3,7 +3,11 @@ package edu.elte.ik.preszk.cardgame;
 import java.util.*;
 import java.io.*;
 
-
+/**
+ * Ez az osztály a pakli és az ahhoz tartozó lapok kezelését valósítja meg.
+ * @author Peter Kovacs AKD7MZ
+ *
+ */
 public class Deck {
 	
 	private Map <Integer,String> belsoMap = new TreeMap<Integer,String>();
@@ -11,6 +15,10 @@ public class Deck {
 	private List<String> sortedDeck = new ArrayList<String>();       //megkevert pakli
 	
 	
+	/**
+	 * Az osztály konstruktora amely létrehozza a paklit.
+	 * @param magyarKartya ha igaz magyar kártya paklit, ha hamis francia kártya paklit hoz létre.
+	 */
 	public Deck(boolean magyarKartya){          //hamis-francia  igaz-magyar
 		if(magyarKartya){
 			belsoMap.put(7,"VII");
@@ -52,11 +60,18 @@ public class Deck {
 		}
 	}
 	
+	
+	/**
+	 * Ez a metódus visszaadja a paklit.
+	 * @return egy HashMap-ben adja vissza a pakli tartalmát
+	 */
 	public HashMap<String,Map<Integer,String>> getPakli(){
 		return this.pakli;
 	}
         
-	//a pakli kiiratása
+	/**
+	 * Kiírja a pakli tartalmát.
+	 */
 	public void printDeck(){
 		System.err.println("Pakli kiírása");
 		
@@ -70,7 +85,12 @@ public class Deck {
 		} 
 	}
 	
-	//megadott lap lekérése a pakliból
+	/**
+	 * Visszaadja a pakli egy lapját.
+	 * @param szin a kártya színe.
+	 * @param szam a kártya száma.
+	 * @return ha tartalmazza a pakli a lekérdezett kártyát szin + " " + szam formatumban tér vissza, ha nincs benne akkor "hibas laplekerdezes! hibaüzenettel.
+	 */
 	public String getLap(String szin, int szam){
 		for (String name: pakli.keySet()){
 			if(name.equals(szin)){
@@ -86,7 +106,9 @@ public class Deck {
 		}
 		return ("hibas laplekerdezes!");
 	}
-		
+	/**
+	 * Bekeveri a paklit egy ArrayListbe.	
+	 */
 	private void SortDeck(){			//paklikeverés egy arrayListbe
 		int hanyKartya = 52;
 		Random random = new Random();
@@ -114,7 +136,10 @@ public class Deck {
 		}
 	}
 	
-	private void SortMagyar(){			//paklikeverés magyar kártyák esetén
+	/**
+	 * paklikeverés magyar kártyák esetén
+	 */
+	private void SortMagyar(){			
 		int hanyKartya = 32;
 		Random random = new Random();
 		String szintomb[] = {"Piros" , "Tok" , "Zold" , "Makk"};
@@ -141,6 +166,12 @@ public class Deck {
 		}
 	}
 	
+	
+	/**
+	 * Vissza adja, a sorbarendezett pakli x. elemét.
+	 * @param hanyadik kártyát kéri a sorbarendezett pakliból.
+	 * @return a sorbarendezett kártyával, hiba esetén hibas kartyalekerdezes! hibaüzenet.
+	 */
 	public String getSortedCard(int hanyadik){
 		String value;
 		try{
