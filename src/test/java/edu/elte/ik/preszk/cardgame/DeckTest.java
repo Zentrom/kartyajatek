@@ -6,14 +6,15 @@ package edu.elte.ik.preszk.cardgame;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Test;
+
 import junit.framework.Assert;
-import junit.framework.TestCase;
 
 /**
  * @author Peti
  *
  */
-public class DeckTest extends TestCase {
+public class DeckTest{
 
 	/**
 	 * @param name
@@ -24,9 +25,9 @@ public class DeckTest extends TestCase {
 	 * @see junit.framework.TestCase#setUp()
 	 */
 	protected void setUp() throws Exception {
-		super.setUp();
 	}
 	
+	@Test
 	public void testConstructor() {
 		//GIVEN
 		//WHEN
@@ -37,6 +38,7 @@ public class DeckTest extends TestCase {
 		Assert.assertNotNull(francia);
 	}
 
+	@Test
 	public void testGetPakli() {
 		//GIVEN
 		Deck magyar = new Deck(true);
@@ -46,6 +48,7 @@ public class DeckTest extends TestCase {
 		Assert.assertEquals(4, pakli.size());
 	}
 	
+	@Test
 	public void testPrintDeck() {
 		//GIVEN
 		Deck magyar = new Deck(true);
@@ -55,6 +58,7 @@ public class DeckTest extends TestCase {
 		
 	}
 	
+	@Test
 	public void testGetLapWhenNotFoundColor() {
 		//GIVEN
 		Deck magyar = new Deck(true);
@@ -64,6 +68,7 @@ public class DeckTest extends TestCase {
 		Assert.assertEquals("hibas laplekerdezes!", actual);
 	}
 	
+	@Test
 	public void testGetLapWhenNotFoundNumber() {
 		//GIVEN
 		Deck magyar = new Deck(true);
@@ -73,6 +78,7 @@ public class DeckTest extends TestCase {
 		Assert.assertEquals("hibas laplekerdezes!", actual);
 	}
 	
+	@Test
 	public void testGetLap() {
 		//GIVEN
 		Deck magyar = new Deck(true);
@@ -82,19 +88,21 @@ public class DeckTest extends TestCase {
 		Assert.assertEquals("Piros Felso", actual);
 	}
 	
+	@Test
 	public void testGetSortedCard() {
 		//GIVEN
 		Deck magyar = new Deck(true);
 		//WHEN
-		String actual = magyar.getSortedCard(3);
+		magyar.getSortedCard(3);
 		//THEN
 	}
 	
+	@Test
 	public void testWhenInvalid() {
 		//GIVEN
 		Deck magyar = new Deck(true);
 		//WHEN
-		String actual = magyar.getSortedCard(42);
+		magyar.getSortedCard(42);
 		//THEN
 	}
 }

@@ -43,7 +43,8 @@ public class KartyaJatek{
                                 passziansz.game();
 				break;
                         case 3:
-                            Treffnem treffnem = new Treffnem();
+                        	BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
+                            Treffnem treffnem = new Treffnem(br);
                             //treffnem game metódusa, elindítja a játékot
                             treffnem.game();
                             break;

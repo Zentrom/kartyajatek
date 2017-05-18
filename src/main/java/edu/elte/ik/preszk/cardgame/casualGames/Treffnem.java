@@ -18,13 +18,19 @@ import java.util.Scanner;
  * @author Lipcsei
  */
 public class Treffnem {
+	
+	private BufferedReader br;
+	
+	public Treffnem(BufferedReader br) {
+		this.br = br;
+	}
+	
     public void game() throws IOException{
         while(true){
             System.out.println("Ezt a játékot francia kártyával játszák. Tippeld meg hogy a következő kártya treff lesz e ;)");
             int pontszam = 0;
             Deck pakli = new Deck(false);
             int ingame = 0;
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String choose = "";
             
             while(ingame < 30){
@@ -44,7 +50,7 @@ public class Treffnem {
                     if(choose.equals("igen"))
                         pontszam = pontszam + 1;
                 }
-                else if(szin != "Clover"){
+                else{
                     if(choose.equals("igen"))
                         System.out.println("NEM");
                 }
