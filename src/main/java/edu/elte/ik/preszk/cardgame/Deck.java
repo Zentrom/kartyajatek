@@ -1,7 +1,6 @@
 package edu.elte.ik.preszk.cardgame;
 
 import java.util.*;
-import java.io.*;
 
 /**
  * Ez az osztály a pakli és az ahhoz tartozó lapok kezelését valósítja meg.
@@ -78,7 +77,6 @@ public class Deck {
 		for (String name: pakli.keySet()){
 			String key = name.toString();
 			for(Integer num : belsoMap.keySet()){
-				String value = pakli.get(name).toString();
 				String num_value = belsoMap.get(num).toString();
 				System.out.println(key + " " + num_value);
 			}
@@ -168,9 +166,9 @@ public class Deck {
 	
 	
 	/**
-	 * Vissza adja, a sorbarendezett pakli x. elemét.
-	 * @param hanyadik kártyát kéri a sorbarendezett pakliból.
-	 * @return a sorbarendezett kártyával, hiba esetén hibas kartyalekerdezes! hibaüzenet.
+	 * Vissza adja, a megkevert pakli x. elemét.
+	 * @param hanyadik kártyát kéri a megkevert pakliból.
+	 * @return a megkevert kártyával, hiba esetén hibas kartyalekerdezes! hibaüzenet.
 	 */
 	public String getSortedCard(int hanyadik){
 		String value;
