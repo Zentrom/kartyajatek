@@ -2,7 +2,11 @@ package edu.elte.ik.preszk.cardgame.gamblingGames;
 
 import edu.elte.ik.preszk.cardgame.Deck;
 
-
+/**
+ * Ez az osztály a BlackJack játék kártyakezeléséért felel.
+ * @author Preszk Team
+ *
+ */
 public class BJCardHandler{
 	
 	//private String cardName;
@@ -10,15 +14,30 @@ public class BJCardHandler{
 	private Deck pakli;
 	private int hanyadik = 0;
 	
+	/**
+	 * A kártyakezelés konstruktora.
+	 * @param pakli {@link Deck} egy franciakártya pakli.
+	 */
 	public BJCardHandler(Deck pakli){
 		this.pakli = pakli;
 	}
 	
+	/**
+	 * A következő kártyát adja vissza.
+	 * @return {@link String} típusban a következő kártya.
+	 */
 	public String getNextCardName(){               //következo kártya Stringbe
 		String vissza=pakli.getSortedCard(hanyadik);
 		hanyadik++;
 		return vissza;
 	}
+	
+	
+	/**
+	 * Visszaadja, hogy az adott kártya mennyi ér BlackJackben.
+	 * @param cardName a kártya neve.
+	 * @return {@link int} típusban a kártya értéke.
+	 */
 	
 	public int getCardValue(String cardName){						//visszaadja a kártya értékét blackjackben
 		String[] felosztott = cardName.split(" ");

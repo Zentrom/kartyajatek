@@ -14,17 +14,24 @@ import java.util.Scanner;
  */
 
 /**
- *
+ * Treffnem kártyajáték.
  * @author Lipcsei
  */
 public class Treffnem {
 	
 	private BufferedReader br;
 	
+	/**
+	 * A konstruktor amely inicializálja a Treffnem játékot. 
+	 * @param br egy {@link BufferedReader} mely a kommunikációért felel.
+	 */
 	public Treffnem(BufferedReader br) {
 		this.br = br;
 	}
 	
+	/**
+	 * Elindítja a Treffnem kártyajátékot.
+	 */
     public void game(){
         while(true){ 
             System.out.println("Ezt a játékot francia kártyával játszák. Tippeld meg hogy a következő kártya treff lesz e ;)");

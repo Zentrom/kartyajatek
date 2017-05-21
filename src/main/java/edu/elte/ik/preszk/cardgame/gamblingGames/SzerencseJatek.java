@@ -2,7 +2,11 @@ package edu.elte.ik.preszk.cardgame.gamblingGames;
 
 import java.io.*;
 import java.util.*;
-
+/**
+ * Ez az osztály az többszemélyes kártyajátékok elindításáért felel.
+ * @author Preszk Team
+ *
+ */
 public class SzerencseJatek{
 	
 	private String username;
@@ -12,10 +16,19 @@ public class SzerencseJatek{
 	
 	private BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 	
+	
+	/**
+	 * Többszemélyes játékok menüjének elíndításáért felelős konstruktor.
+	 * @throws IOException ha olvasási hiba van.
+	 */
 	public SzerencseJatek() throws IOException{
 		printMenu();
 	}
 
+	/**
+	 * Kiírja a menüt.
+	 * @throws IOException ha olvasási hiba van.
+	 */
 	private void printMenu() throws IOException {				//kiirja a menut
 		System.out.println("Kerem jelentkezzen be!");
 		System.out.println("(Ha meg nincs fiokja regisztraljon)");
@@ -55,6 +68,11 @@ public class SzerencseJatek{
 		}
 	}
 	
+	
+	/**
+	 * Belépést kezeli.
+	 * @throws IOException ha olvasási hiba történik.
+	 */
 	private void Belepes() throws IOException{				//belepest kezeli
 		System.out.println("Kerem adja meg a felhasznalonevet!");
 		this.username=stdin.readLine();
@@ -94,7 +112,11 @@ public class SzerencseJatek{
 		
 	}
 	
-	private void SikeresBelepes() throws IOException{ 			//menu mikor sikeres volt a bejelentkezes
+	/**
+	 * Menu mikor sikeres volt a bejelentkezes
+	 * @throws IOException ha olvasási hiba történt.
+	 */
+	private void SikeresBelepes() throws IOException{ 			//
 	
 		System.out.println("Sikerult a belepes,udvozoljuk!");
 		System.out.println("A jelenlegi egyenlege: "+vagyon+" dollar\n");
@@ -145,6 +167,11 @@ public class SzerencseJatek{
 		//System.out.println("Koszonjuk hogy ittvolt! Vegso vagyona: " + this.vagyon);
 	}
 	
+	
+	/**
+	 * Regisztrációt kezeli
+	 * @throws IOException ha olvasási hiba történt.
+	 */
 	private void Regisztracio() throws IOException{			//reget kezeli
 		
 		System.out.println("Kerem adjon meg egy felhasznalonevet!");
@@ -185,6 +212,10 @@ public class SzerencseJatek{
 		}
 	}
 	
+	/**
+	 * Visszaallitja az egyenleget az alapertekre
+	 * @throws IOException ha olvasási hiba történt.
+	 */
 	private void RestoreCredits() throws IOException{			//visszaallitja az egyenleget az alapertekre
 		if(this.vagyon==0){
 			this.vagyon=1000;
@@ -194,6 +225,10 @@ public class SzerencseJatek{
 		}
 	}
 	
+	/**
+	 * Játék után az egyenleget frissíti.
+	 * @throws IOException ha olvasási hiba történt.
+	 */
 	private void updateStoredCredits() throws IOException{
 		File inputFile = new File("data");
 		File tempFile = new File("myTempdata");
@@ -219,26 +254,50 @@ public class SzerencseJatek{
 		tempFile.renameTo(inputFile);
 	}
 	
+	/**
+	 * Username getter.
+	 * @return felhasználónév.
+	 */
 	public String getUsername(){
 		return this.username;
 	}
 	
+	/**
+	 * Username setter.
+	 * @param username a felhasználó.
+	 */
 	public void setUsername(String username){
 		this.username=username;
 	}
 	
+	/**
+	 * Password getter.
+	 * @return jelszó.
+	 */
 	public String getPassword(){
 		return this.password;
 	}
 	
+	/**
+	 * Password setter.
+	 * @param password a jelszó.
+	 */
 	public void setPassword(String password){
 		this.password=password;
 	}
 	
+	/**
+	 * Vagyon getter.
+	 * @return vagyon.
+	 */
 	public int getVagyon(){
 		return this.vagyon;
 	}
 	
+	/**
+	 * Vagyon setter.
+	 * @param vagyon a vagyon
+	 */
 	public void setVagyon(int vagyon){
 		this.vagyon=vagyon;
 	}

@@ -3,7 +3,11 @@ package edu.elte.ik.preszk.cardgame.casualGames;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+/**
+ * Ez az osztály az egyszemélyes kártyajátékok elindításáért felel.
+ * @author Preszk Team
+ *
+ */
 public class KartyaJatek {
 
 	private BufferedReader stdin;
@@ -11,6 +15,13 @@ public class KartyaJatek {
 	private Passziansz passziansz;
 	private Treffnem treffnem;
 
+	/**
+	 * 
+	 * @param stdin {@link BufferedReader } mely a kommunikációért felel.
+	 * @param admiralis {@link Admiralis} játék.
+	 * @param passziansz {@link Passziansz} játék.
+	 * @param treffnem {@link Treffnem} játék.
+	 */
 	public KartyaJatek(BufferedReader stdin, Admiralis admiralis, Passziansz passziansz, Treffnem treffnem) {
 		this.stdin = stdin;
 		this.admiralis = admiralis;
@@ -19,6 +30,9 @@ public class KartyaJatek {
 
 	}
 
+	/**
+	 * Elindítja az egyszemélyes kártyajátékok választó menüjét.
+	 */
 	public void start() {
 		int valasztas = -1;
 

@@ -9,9 +9,19 @@ import edu.elte.ik.preszk.cardgame.casualGames.KartyaJatek;
 import edu.elte.ik.preszk.cardgame.casualGames.Passziansz;
 import edu.elte.ik.preszk.cardgame.casualGames.Treffnem;
 import edu.elte.ik.preszk.cardgame.gamblingGames.SzerencseJatek;
- 
+ /**
+  * Ez az osztály a Játék elindításáért felel. 
+  * @author Preszk Team
+  *
+  */
 public class App 
 {
+	
+	/**
+	 * Felhozza a főmenüt.
+	 * @param args console argumentumok.
+	 * @throws IOException beolvasási hiba esetén.
+	 */
     public static void main( String[] args ) throws IOException
     {
 		int valasztas=-1;

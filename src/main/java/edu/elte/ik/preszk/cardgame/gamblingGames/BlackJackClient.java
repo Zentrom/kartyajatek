@@ -3,18 +3,34 @@ package edu.elte.ik.preszk.cardgame.gamblingGames;
 import java.io.*;
 import java.util.*;
 import java.net.*;
-
+/**
+ * Ez az osztály a BlackJack kártyajáték kliensének megvalósításáért felel.
+ * @author Preszk Team
+ *
+ */
 public class BlackJackClient{
 	
 	private final String username;
 	private int vagyon;
 	private int bet=99999999;
 	
+	
+	/**
+	 * Új kliens létrehozásáért felelős konstruktor.
+	 * @param username a felhasználó neve
+	 * @param vagyon a felhasználó vagyona
+	 */
 	public BlackJackClient(String username,int vagyon){
 		this.username = username;
 		this.vagyon = vagyon;
 	}
 	
+	
+	/**
+	 * BlackJack játék elindítása kliens oldalról.
+	 * @return mennyi pénze maradt a kliensnek.
+	 * @throws IOException ha olvasási hiba történik.
+	 */
 	public int play()throws IOException{
 		Scanner stdin = new Scanner(System.in);
 		//System.out.println("Adja meg a nevet!");
