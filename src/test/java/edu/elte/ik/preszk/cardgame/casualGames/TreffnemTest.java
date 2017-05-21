@@ -14,32 +14,44 @@ public class TreffnemTest {
 
 	@Mock
 	BufferedReader br;
-	
+
 	@InjectMocks
 	Treffnem treffnem;
-	
+
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 	}
-	
+
 	@Test
 	public void testGame() {
-		//GIVEN
+		// GIVEN
 		try {
-			Mockito.when(br.readLine()).thenReturn("nem","igen","nem","igen","nem","igen","nem","igen","nem","igen","nem","igen","nem","igen","nem","igen","nem","igen","nem","igen","nem","igen","nem","igen","nem","igen","nem","igen","nem","igen");
+			Mockito.when(br.readLine()).thenReturn("nem", "igen", "nem", "igen", "nem", "igen", "nem", "igen", "nem",
+					"igen", "nem", "igen", "nem", "igen", "nem", "igen", "nem", "igen", "nem", "igen", "nem", "igen",
+					"nem", "igen", "nem", "igen", "nem", "igen", "nem", "igen");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		//WHEN
+		// WHEN
+		treffnem.game();
+
+		// THEN
+	}
+	
+	@Test
+	public void testGameWhenException() {
+		// GIVEN
 		try {
-			treffnem.game();
-			
-		} catch (IOException e) {
+			Mockito.when(br.readLine()).thenThrow(IOException.class);
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
-		//THEN
+		// WHEN
+		treffnem.game();
+
+		// THEN
 	}
 }

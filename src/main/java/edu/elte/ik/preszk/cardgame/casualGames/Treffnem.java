@@ -25,8 +25,8 @@ public class Treffnem {
 		this.br = br;
 	}
 	
-    public void game() throws IOException{
-        while(true){
+    public void game(){
+        while(true){ 
             System.out.println("Ezt a játékot francia kártyával játszák. Tippeld meg hogy a következő kártya treff lesz e ;)");
             int pontszam = 0;
             Deck pakli = new Deck(false);
@@ -36,7 +36,13 @@ public class Treffnem {
             while(ingame < 30){
                 System.out.println("Treff - Clover? (igen-nem)");
                 
-                choose = br.readLine();
+                try {
+					
+                	choose = br.readLine();
+				} catch (IOException e) {
+					System.err.println("Hiba a beolvasas kozben");
+					break;
+				}
                 
                 
                 Random random = new Random();

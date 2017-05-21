@@ -1,29 +1,33 @@
 package edu.elte.ik.preszk.cardgame.casualGames;
 
+import org.junit.Before;
 import org.junit.Test;
-
-import junit.framework.Assert;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
 
 public class AdmiralisTest  {
 
 	/**
 	 * @param name
 	 */
-	
+
+	@InjectMocks
+	Admiralis admiralis;
 
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()
 	 */
-	protected void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
+		MockitoAnnotations.initMocks(this);
 	}
 	
 	@Test
 	public void testConstructor() {
 		//GIVEN
 		//WHEN
-		Admiralis admiralis = new Admiralis();
 		//THEN
-		Assert.assertNotNull(admiralis);
+		admiralis.game();
 	}
 	
 }
