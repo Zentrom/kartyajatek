@@ -2,6 +2,9 @@ package edu.elte.ik.preszk.cardgame.gamblingGames;
 
 import java.io.*;
 import java.util.*;
+
+import edu.elte.ik.preszk.cardgame.Deck;
+
 import java.net.*;
 
 public class BlackJackServer{
@@ -193,7 +196,7 @@ class Jatek extends Thread{
 		kor = 0;
 		firstBet = 0;
 		firstSzal = 0;
-		bjHandler=new BJCardHandler();
+		bjHandler=new BJCardHandler( new Deck(false));
 		
 		//this.dealerKartyak[]=new String[5]("","","","","");
 		//dealerPoints={0,0,0,0,0};

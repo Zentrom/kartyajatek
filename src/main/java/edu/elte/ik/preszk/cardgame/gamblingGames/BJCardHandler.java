@@ -1,19 +1,17 @@
 package edu.elte.ik.preszk.cardgame.gamblingGames;
 
 import edu.elte.ik.preszk.cardgame.Deck;
-import java.io.*;
-import java.util.*;
 
 
 public class BJCardHandler{
 	
 	//private String cardName;
 	//private String cardValue;
-	private Deck pakli = new Deck(false);
+	private Deck pakli;
 	private int hanyadik = 0;
 	
-	public BJCardHandler(){
-		//semmi
+	public BJCardHandler(Deck pakli){
+		this.pakli = pakli;
 	}
 	
 	public String getNextCardName(){               //következo kártya Stringbe
@@ -25,49 +23,30 @@ public class BJCardHandler{
 	public int getCardValue(String cardName){						//visszaadja a kártya értékét blackjackben
 		String[] felosztott = cardName.split(" ");
 		
-		switch(felosztott[1]){
-			case "2":
+		if( felosztott[1].equals("2")) {
+			
 				return 2;
-				//break;
-			case "3":
-				return 3;
-				//break;
-			case "4":
+		}else if( felosztott[1].equals("3")) {
+			return 3;
+					
+		} else if( felosztott[1].equals("4")) {
 				return 4;
-				//break;
-			case "5":
+		} else if( felosztott[1].equals("5")) {		
 				return 5;
-				//break;
-			case "6":
+		} else if( felosztott[1].equals("6")) {
 				return 6;
-				//break;
-			case "7":
+		} else if( felosztott[1].equals("7")) {
 				return 7;
-				//break;
-			case "8":
+		} else if( felosztott[1].equals("8")) {
 				return 8;
-				//break;
-			case "9":
+		} else if( felosztott[1].equals("9")) {
 				return 9;
-				//break;
-			case "10":
+		} else if( felosztott[1].equals("10") ||  felosztott[1].equals("J") ||  felosztott[1].equals("Q") ||  felosztott[1].equals("K")) {
 				return 10;
-				//break;
-			case "J":
-				return 10;
-				//break;
-			case "Q":
-				return 10;
-				//break;
-			case "K":
-				return 10;
-				//break;
-			case "A":
+		} else if( felosztott[1].equals("A")) {
 				return 11;
-				//break;
-			default:
+		}else {
 				return 0;
-				//break;
 		}
 	}
 	
