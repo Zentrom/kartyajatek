@@ -1,17 +1,27 @@
 package edu.elte.ik.preszk.cardgame;
 
-/**
- * Hello world!
- *
- */
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-import edu.elte.ik.preszk.cardgame.gamblingGames.*;
-import edu.elte.ik.preszk.cardgame.casualGames.*;
- 
+import edu.elte.ik.preszk.cardgame.casualGames.Admiralis;
+import edu.elte.ik.preszk.cardgame.casualGames.KartyaJatek;
+import edu.elte.ik.preszk.cardgame.casualGames.Passziansz;
+import edu.elte.ik.preszk.cardgame.casualGames.Treffnem;
+import edu.elte.ik.preszk.cardgame.gamblingGames.SzerencseJatek;
+ /**
+  * Ez az osztály a Játék elindításáért felel. 
+  * @author Preszk Team
+  *
+  */
 public class App 
 {
+	
+	/**
+	 * Felhozza a főmenüt.
+	 * @param args console argumentumok.
+	 * @throws IOException beolvasási hiba esetén.
+	 */
     public static void main( String[] args ) throws IOException
     {
 		int valasztas=-1;
@@ -43,7 +53,12 @@ public class App
 				SzerencseJatek szerencseJ = new SzerencseJatek();
 				break;
 			case 2:
-				KartyaJatek kartyaJ = new KartyaJatek();
+				BufferedReader stdinkartya = new BufferedReader(new InputStreamReader(System.in));
+				Admiralis admiralis = new Admiralis();
+				Passziansz passziansz = new Passziansz();
+				Treffnem treffNem = new Treffnem(stdinkartya);
+				KartyaJatek kartyaJ = new KartyaJatek(stdinkartya,admiralis,passziansz,treffNem);
+				kartyaJ.start();
 				break;
 			default:
 				break;

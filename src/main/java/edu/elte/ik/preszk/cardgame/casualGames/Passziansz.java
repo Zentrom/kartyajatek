@@ -1,11 +1,17 @@
 package edu.elte.ik.preszk.cardgame.casualGames;
 
 import edu.elte.ik.preszk.cardgame.Deck;
-import java.io.*;
-import java.util.*;
 
+/**
+ * Passziánsz játék.
+ * @author Preszk Team
+ *
+ */
 public class Passziansz{
 
+	/**
+	 * Elindítja a passziánsz játékot.
+	 */
     public void game(){
         while(true){
             boolean francia = false;

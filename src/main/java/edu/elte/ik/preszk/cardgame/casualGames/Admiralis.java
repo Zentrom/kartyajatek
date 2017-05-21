@@ -1,8 +1,17 @@
 package edu.elte.ik.preszk.cardgame.casualGames;
-
-import java.io.*;
-import java.util.*;
-
+/**
+ * Admirális játék.
+ * @author Preszk Team
+ *
+ */
 public class Admiralis{
+
+	
+	/**
+	 * Elindítja az admirális játékot.
+	 */
+	public void game() {
+		
+	}
 
 }

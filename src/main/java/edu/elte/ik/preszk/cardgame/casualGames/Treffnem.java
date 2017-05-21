@@ -14,23 +14,42 @@ import java.util.Scanner;
  */
 
 /**
- *
+ * Treffnem kártyajáték.
  * @author Lipcsei
  */
 public class Treffnem {
-    public void game() throws IOException{
-        while(true){
+	
+	private BufferedReader br;
+	
+	/**
+	 * A konstruktor amely inicializálja a Treffnem játékot. 
+	 * @param br egy {@link BufferedReader} mely a kommunikációért felel.
+	 */
+	public Treffnem(BufferedReader br) {
+		this.br = br;
+	}
+	
+	/**
+	 * Elindítja a Treffnem kártyajátékot.
+	 */
+    public void game(){
+        while(true){ 
             System.out.println("Ezt a játékot francia kártyával játszák. Tippeld meg hogy a következő kártya treff lesz e ;)");
             int pontszam = 0;
             Deck pakli = new Deck(false);
             int ingame = 0;
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String choose = "";
             
             while(ingame < 30){
                 System.out.println("Treff - Clover? (igen-nem)");
                 
-                choose = br.readLine();
+                try {
+					
+                	choose = br.readLine();
+				} catch (IOException e) {
+					System.err.println("Hiba a beolvasas kozben");
+					break;
+				}
                 
                 
                 Random random = new Random();
@@ -44,7 +63,7 @@ public class Treffnem {
                     if(choose.equals("igen"))
                         pontszam = pontszam + 1;
                 }
-                else if(szin != "Clover"){
+                else{
                     if(choose.equals("igen"))
                         System.out.println("NEM");
                         pontszam = pontszam - 1;
