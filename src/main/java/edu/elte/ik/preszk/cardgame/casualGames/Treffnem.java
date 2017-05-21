@@ -47,6 +47,7 @@ public class Treffnem {
                 else if(szin != "Clover"){
                     if(choose.equals("igen"))
                         System.out.println("NEM");
+                        pontszam = pontszam - 1;
                 }
                 ingame++;
             }
