@@ -61,7 +61,7 @@ public class App
 				Treffnem treffNem = new Treffnem(stdinkartya);
                                 SzinreSzin szinreSzin = new SzinreSzin(stdinkartya);
                                 Parkereso parkereso = new Parkereso(stdinkartya);
-				KartyaJatek kartyaJ = new KartyaJatek(stdinkartya,admiralis,passziansz,treffNem,szinreSzin);
+				KartyaJatek kartyaJ = new KartyaJatek(stdinkartya,admiralis,passziansz,treffNem,szinreSzin,parkereso);
 				kartyaJ.start();
 				break;
 			default:
