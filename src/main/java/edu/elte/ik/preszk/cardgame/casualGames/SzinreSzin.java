@@ -30,7 +30,7 @@ public class SzinreSzin {
     /**
      * Elindítja a Színre szín kártyajátékot.
      */
-    void game() {
+    void game() throws IOException {
         while(true){ 
             System.out.println("Ezt a játékot magyar kártyával játszák. Színre színt kell raknod. Az nyer akinek elfogynak a lapjai");
             //a játékos
@@ -61,9 +61,10 @@ public class SzinreSzin {
                     System.err.println("Hiba a beolvasas kozben");
                     break;
                 }
-                if(choose == "0")
+                if(choose.equals("0")){
                     isover = true;
-                else{
+                    break;
+                }else{
                     boolean isCorrect = false;
                     while(!isCorrect){
                         if(lastCard == ""){
@@ -80,8 +81,12 @@ public class SzinreSzin {
                                 player1.remove(Integer.parseInt(choose)-1);
                                 isCorrect = true;
                             }else{
+                                if(choose == "0"){
+                                    isover = true;
+                                }
                                 System.out.println("Ezt a lapot nem tudod letenni!");
-                                isCorrect = true;
+                                choose = br.readLine();
+                                //isCorrect = true;
                             }
                         }
                     }
