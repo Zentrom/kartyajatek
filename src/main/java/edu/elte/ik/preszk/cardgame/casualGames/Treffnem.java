@@ -66,6 +66,7 @@ public class Treffnem {
                 else{
                     if(choose.equals("igen"))
                         System.out.println("NEM");
+                        pontszam = pontszam - 1;
                 }
                 ingame++;
             }
