@@ -10,19 +10,15 @@ import java.net.*;
  */
 public class BlackJackClient{
 	
-	private final String username;
+	private String username;
 	private int vagyon;
 	private int bet=99999999;
 	
 	
 	/**
 	 * Új kliens létrehozásáért felelős konstruktor.
-	 * @param username a felhasználó neve
-	 * @param vagyon a felhasználó vagyona
 	 */
-	public BlackJackClient(String username,int vagyon){
-		this.username = username;
-		this.vagyon = vagyon;
+	public BlackJackClient(){
 	}
 	
 	
@@ -41,10 +37,10 @@ public class BlackJackClient{
 			Scanner sc = new Scanner(socket.getInputStream());
 		
 		
-			pw.println(username);
+			pw.println(getUsername());
 			
 			if(sc.nextLine().equals("giveBets")){
-				while(bet > vagyon){
+				while(bet > getVagyon()){
 					System.out.println("Kerem adja meg mennyit szeretne fogadni!");
 					bet=Integer.parseInt(stdin.nextLine());
 				}
@@ -74,12 +70,12 @@ public class BlackJackClient{
 			}
 			
 			if(uzenet.equals("STATE WIN")){
-				vagyon +=bet;
+				setVagyon(getVagyon() + bet);
 				System.out.println("Gratulalok!Nyert!");
 			}else if(uzenet.equals("STATE PUSH")){
 				System.out.println("Dontetlen lett!");
 			}else if(uzenet.equals("STATE LOSE")){
-				vagyon -=bet;
+				setVagyon(getVagyon() - bet);
 				System.out.println("Sajnos vesztett!");
 			}
 			
@@ -96,6 +92,26 @@ public class BlackJackClient{
 			BJServer.main(new String[]{""});
 		}
 		
+		return getVagyon();
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public int getVagyon() {
 		return vagyon;
+	}
+
+
+	public void setVagyon(int vagyon) {
+		this.vagyon = vagyon;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }

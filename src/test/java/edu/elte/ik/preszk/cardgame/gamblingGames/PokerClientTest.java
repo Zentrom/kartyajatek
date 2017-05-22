@@ -15,7 +15,7 @@ public class PokerClientTest {
 	@Test 
 	public void testPlay() {
 		//GIVEN
-		PokerClient client = new PokerClient("user", 0);
+		PokerClient client = new PokerClient();
 		//WHEN
 		int actual = client.play();
 		//THEN

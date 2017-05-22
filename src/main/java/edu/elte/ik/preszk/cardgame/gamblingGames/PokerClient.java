@@ -11,12 +11,13 @@ import java.net.*;
 public class PokerClient{
 	
 	
+	private String username;
+	private int vagyon;
+	
 	/**
 	 * Új kliens létrehozásáért felelős konstruktor.
-	 * @param username a felhasználó neve
-	 * @param vagyon a felhasználó vagyona
 	 */
-	public PokerClient(String username,int vagyon){
+	public PokerClient(){
 		
 	}
 	
@@ -26,5 +27,21 @@ public class PokerClient{
 	 */
 	public int play(){
 		return 1000;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public int getVagyon() {
+		return vagyon;
+	}
+
+	public void setVagyon(int vagyon) {
+		this.vagyon = vagyon;
 	}
 }
