@@ -9,6 +9,7 @@ import edu.elte.ik.preszk.cardgame.casualGames.KartyaJatek;
 import edu.elte.ik.preszk.cardgame.casualGames.Passziansz;
 import edu.elte.ik.preszk.cardgame.casualGames.SzinreSzin;
 import edu.elte.ik.preszk.cardgame.casualGames.Treffnem;
+import edu.elte.ik.preszk.cardgame.casualGames.Parkereso;
 import edu.elte.ik.preszk.cardgame.gamblingGames.SzerencseJatek;
  /**
   * Ez az osztály a Játék elindításáért felel. 
@@ -59,6 +60,7 @@ public class App
 				Passziansz passziansz = new Passziansz();
 				Treffnem treffNem = new Treffnem(stdinkartya);
                                 SzinreSzin szinreSzin = new SzinreSzin(stdinkartya);
+                                Parkereso parkereso = new Parkereso(stdinkartya);
 				KartyaJatek kartyaJ = new KartyaJatek(stdinkartya,admiralis,passziansz,treffNem,szinreSzin);
 				kartyaJ.start();
 				break;
