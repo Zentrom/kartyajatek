@@ -94,7 +94,7 @@ public class Parkereso{
             cards.put(i,pakli.getSortedCard(i));
         }
         for(int i = 0; i<pakli.size(); ++i){
-            cards.put(i+32,pakli2.getSortedCard(i));
+            cards.put(i+pakli.size(),pakli2.getSortedCard(i));
         }
         for(int i = 0; i<2 * pakli.size(); ++i){
             NotFoundCards.put(i,"X");
@@ -147,7 +147,7 @@ public class Parkereso{
                     allFound++;
                 }				
             }            
-            if(allFound == 64){
+            if(allFound == NotFoundCards.size()){
                 System.out.println("Megtaláltad az összes párt! A játéknak vége");
                 run = false;
             }
