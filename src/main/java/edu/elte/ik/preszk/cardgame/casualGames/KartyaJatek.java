@@ -17,6 +17,7 @@ public class KartyaJatek {
 	private Passziansz passziansz;
 	private Treffnem treffnem;
         private SzinreSzin szinreSzin;
+        private Parkereso parkereso;
 
 	/**
 	 * 
@@ -26,12 +27,13 @@ public class KartyaJatek {
 	 * @param treffnem {@link Treffnem} játék.
          * @param szinreSzin {@link szinreSzin} játék.
 	 */
-	public KartyaJatek(BufferedReader stdin, Admiralis admiralis, Passziansz passziansz, Treffnem treffnem, SzinreSzin szinreSzin) {
+	public KartyaJatek(BufferedReader stdin, Admiralis admiralis, Passziansz passziansz, Treffnem treffnem, SzinreSzin szinreSzin, Parkereso parkereso) {
 		this.stdin = stdin;
 		this.admiralis = admiralis;
 		this.passziansz = passziansz;
 		this.treffnem = treffnem;
                 this.szinreSzin = szinreSzin;
+                this.parkereso = parkereso;
 
 	}
 
@@ -44,12 +46,13 @@ public class KartyaJatek {
 		System.out.println("\nKerem valasszon a menupontok kozul?\n");
 
 		try {
-			while (valasztas != 0 && valasztas != 1 && valasztas != 2 && valasztas != 3 && valasztas != 4) {
+			while (valasztas != 0 && valasztas != 1 && valasztas != 2 && valasztas != 3 && valasztas != 4 && valasztas != 5) {
 
 				System.out.println("1.Admiralis");
 				System.out.println("2.Passziansz");
 				System.out.println("3.Treff-nem");
                                 System.out.println("4.Szinre szín");
+                                System.out.println("5.párkereső");
 				System.out.println("0.Kilepes");
 
 				try {
@@ -88,6 +91,15 @@ public class KartyaJatek {
                     }
                 }
 			break;
+                case 5:
+                {
+                    try {
+                        parkereso.game();
+                    } catch (IOException ex) {
+                        System.err.println("Megnyitási hiba");
+                    }
+                }
+                    break;
 		default:
 			break;
 		}
