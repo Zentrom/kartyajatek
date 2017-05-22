@@ -75,8 +75,8 @@ public class SzinreSzin {
                         }else{
                             String playerstr[] = player1.get(Integer.parseInt(choose)-1).toString().split(" ");
                             String laststr[] = lastCard.split(" ");
-                            if(playerstr[0].equals(laststr[0])){
-                                lastCard = playerstr[0];
+                            if(playerstr[0].equals(laststr[0]) || playerstr[1].equals(laststr[1])){
+                                lastCard = player1.get(Integer.parseInt(choose)-1).toString();
                                 System.out.println("Az asztalon lévő felső lap: " + player1.get(Integer.parseInt(choose)-1).toString());
                                 player1.remove(Integer.parseInt(choose)-1);
                                 isCorrect = true;
@@ -92,7 +92,7 @@ public class SzinreSzin {
                     }
                 }
                 System.out.println("A gépi játékos következik!");
-                System.out.println("A gépi játékos kártyái a következők:");
+                //System.out.println("A gépi játékos kártyái a következők:");
                 for(int i = 0; i<player1.size(); ++i){
                     System.err.print("[" + (i+1) + ".] " + player2.get(i) + " , ");
                 }
@@ -104,8 +104,8 @@ public class SzinreSzin {
                     int num = random.nextInt(player2.size()-1);
                     String laststr[] = lastCard.split(" ");
                     String playerstr[] = player2.get(num).toString().split(" ");
-                    if(playerstr[0].equals(laststr[0])){
-                        lastCard = playerstr[0];
+                    if(playerstr[0].equals(laststr[0]) || playerstr[1].equals(laststr[1])){
+                        lastCard = player2.get(num).toString();
                         System.out.println("Az asztalon lévő felső lap: " + player2.get(num).toString());
                         player2.remove(num);
                         isCorrect = true;
