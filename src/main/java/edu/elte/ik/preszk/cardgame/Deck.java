@@ -180,4 +180,7 @@ public class Deck {
 		return value;
 	}
 	
+        public int size(){
+            return sortedDeck.size();
+        }
 }
