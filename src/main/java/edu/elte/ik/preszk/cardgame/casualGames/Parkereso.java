@@ -13,6 +13,8 @@ import edu.elte.ik.preszk.cardgame.Deck;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Párkereső kártyajáték.
@@ -67,14 +69,15 @@ public class Parkereso{
                 System.out.print("[0"+(i+1)+"]" + "-" + NotFoundCards.get(i) + ", ");
             else
                 System.out.print("[0"+(i+1)+"]" + "-" + NotFoundCards.get(i) + ", ");
+            }
         }
     }
 	
-    public void parkereso(boolean fajta) throws IOException{
+    private void parkereso(boolean fajta){
         Deck pakli = new Deck(fajta);
         boolean run = true;
-        HashMap<Integer, String> cards = new HashMap<Integer, String>();
-        HashMap<Integer, String> NotFoundCards = new HashMap<Integer, String>();
+        HashMap<Integer, String> cards = new HashMap<>();
+        HashMap<Integer, String> NotFoundCards = new HashMap<>();
         //kártyák feltöltése
         for(int i = 0; i<pakli.size(); ++i){
             cards.put(i,pakli.getSortedCard(i));
@@ -90,12 +93,20 @@ public class Parkereso{
         while(run){
             printMap(cards, NotFoundCards);
             System.out.println("Válassz egy kártyát és nyomj entert!");
-            choose = Integer.parseInt(br.readLine());
+            try {
+                choose = Integer.parseInt(br.readLine());
+            } catch (IOException ex) {
+                System.err.println("Beolvasási hiba");
+            }
             NotFoundCards.put(choose,cards.get(choose));
 
             printMap(cards, NotFoundCards);
             System.out.println("Válassz egy másik kártyát és nyomj entert!");
-            choose2 = Integer.parseInt(br.readLine());
+            try {
+                choose2 = Integer.parseInt(br.readLine());
+            } catch (IOException ex) {
+                System.err.println("Beolvasási hiba");
+            }
             if(NotFoundCards.get(choose2).equals(cards.get(choose2))){
                 NotFoundCards.put(choose2,cards.get(choose2));
                 System.out.println("Talált!");
