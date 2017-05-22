@@ -25,6 +25,12 @@ public class KartyaJatekTest {
 	@Mock
 	Treffnem treffnem;
 	
+	@Mock
+	private SzinreSzin szinreSzin;
+	
+	@Mock
+	private Parkereso parkereso;
+	
 	@InjectMocks
 	KartyaJatek kartyajatek;
 	
@@ -90,11 +96,73 @@ public class KartyaJatekTest {
 		
 	}
 	
+	
+	@Test
+	public void testStartWhenSzinreSzin() {
+		//GIVEN
+		try {
+			Mockito.when(br.readLine()).thenReturn("4");
+			Mockito.doNothing().when(szinreSzin).game();
+		} catch (IOException e) {
+		}
+		
+		//WHEN
+		kartyajatek.start();
+		//THEN
+		
+	}
+	
+	@Test
+	public void testStartWhenSzinreSzinException() {
+		//GIVEN
+		try {
+			Mockito.when(br.readLine()).thenReturn("4");
+			Mockito.doThrow(IOException.class).when(szinreSzin).game();
+		} catch (IOException e) {
+		}
+		
+		//WHEN
+		kartyajatek.start();
+		//THEN
+		
+	}
+	
+	@Test
+	public void testStartWhenParkereso() {
+		//GIVEN
+		try {
+			Mockito.when(br.readLine()).thenReturn("5");
+			Mockito.doNothing().when(parkereso).game();
+		} catch (IOException e) {
+		}
+		
+		//WHEN
+		kartyajatek.start();
+		//THEN
+		
+	}
+	
+	@Test
+	public void testStartWhenParkeresoException() {
+		//GIVEN
+		try {
+			Mockito.when(br.readLine()).thenReturn("5");
+			Mockito.doThrow(IOException.class).when(parkereso).game();
+		} catch (IOException e) {
+		}
+		
+		//WHEN
+		kartyajatek.start();
+		//THEN
+		
+	}
+	
+	
 	@Test
 	public void testStartWhenInvalidNumber() {
 		//GIVEN
 		try {
-			Mockito.when(br.readLine()).thenReturn("5","Hello","0");
+			Mockito.when(br.readLine()).thenReturn("6","Hello","0");
 		} catch (IOException e) {
 		}
 		

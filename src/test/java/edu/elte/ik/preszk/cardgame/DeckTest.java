@@ -6,9 +6,9 @@ package edu.elte.ik.preszk.cardgame;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Assert;
 import org.junit.Test;
 
-import junit.framework.Assert;
 
 /**
  * @author Peti
@@ -98,11 +98,21 @@ public class DeckTest{
 	}
 	
 	@Test
-	public void testWhenInvalid() {
+	public void testGetSortedCardWhenInvalid() {
 		//GIVEN
 		Deck magyar = new Deck(true);
 		//WHEN
 		magyar.getSortedCard(42);
 		//THEN
+	}
+	
+	@Test
+	public void testSize() {
+		//GIVEN
+		Deck magyar = new Deck(false);
+		//WHEN
+		int actual = magyar.size();
+		//THEN
+		Assert.assertEquals(52, actual);
 	}
 }
