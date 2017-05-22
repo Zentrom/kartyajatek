@@ -180,6 +180,9 @@ public class Deck {
 		return value;
 	}
 	
+        /**
+	 * Vissza adja, a megkevert pakli méretét
+	 */
         public int size(){
             return sortedDeck.size();
         }
