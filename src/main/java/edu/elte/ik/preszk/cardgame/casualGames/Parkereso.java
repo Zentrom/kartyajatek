@@ -109,13 +109,16 @@ public class Parkereso{
             NotFoundCards.put(choose,cards.get(choose));
 
             printMap(cards, NotFoundCards);
+            printMap(cards, cards);
+            
             System.out.println("Válassz egy másik kártyát és nyomj entert!");
             try {
                 choose2 = Integer.parseInt(br.readLine())-1;
             } catch (IOException ex) {
                 System.err.println("Beolvasási hiba");
             }
-            if(NotFoundCards.get(choose2).equals(cards.get(choose2))){
+            
+            if(NotFoundCards.get(choose).equals(cards.get(choose2))){
                 NotFoundCards.put(choose2,cards.get(choose2));
                 System.out.println("Talált!");
             } else {
@@ -133,6 +136,7 @@ public class Parkereso{
                 System.out.println("Megtaláltad az összes párt! A játéknak vége");
                 run = false;
             }
+            
             System.out.println("Következő kör!");			
         }			
     }
