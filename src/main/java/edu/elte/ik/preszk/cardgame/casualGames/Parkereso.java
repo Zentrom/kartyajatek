@@ -33,7 +33,7 @@ public class Parkereso{
 	}
 	
 	/**
-	 * Elindítja a Treffnem kártyajátékot.
+	 * Elindítja a párkereső kártyajátékot.
 	 */
     public void game() throws IOException{
         System.out.println("Ezt a játékot bármilyen kártyával lehet játszani, Válassz hogy melyikkel szeretnéd: 1-magyar, 2-francia");
@@ -52,7 +52,11 @@ public class Parkereso{
                 break;
         }
     }
-	
+    
+    
+    /**
+    * kiírja a játékteret.
+    */
     private void printMap(HashMap<Integer, String> cards, HashMap<Integer, String> NotFoundCards){
         //kezdő játéktér kiiratása
         for(int i = 0; i<cards.size(); ++i){
@@ -61,20 +65,21 @@ public class Parkereso{
                 System.out.print("[0"+(i+1)+"]" + "-" + NotFoundCards.get(i) + ", ");
                 System.out.println();
             } else {
-                System.out.print("[0"+(i+1)+"]" + "-" + NotFoundCards.get(i) + ", ");
+                System.out.print("["+(i+1)+"]" + "-" + NotFoundCards.get(i) + ", ");
                 System.out.println();
                 }
         } else {
             if((i+1)<10)
                 System.out.print("[0"+(i+1)+"]" + "-" + NotFoundCards.get(i) + ", ");
             else
-                System.out.print("[0"+(i+1)+"]" + "-" + NotFoundCards.get(i) + ", ");
+                System.out.print("["+(i+1)+"]" + "-" + NotFoundCards.get(i) + ", ");
             }
         }
     }
 	
     private void parkereso(boolean fajta){
         Deck pakli = new Deck(fajta);
+        Deck pakli2 = new Deck(fajta);
         boolean run = true;
         HashMap<Integer, String> cards = new HashMap<>();
         HashMap<Integer, String> NotFoundCards = new HashMap<>();
@@ -83,6 +88,9 @@ public class Parkereso{
             cards.put(i,pakli.getSortedCard(i));
         }
         for(int i = 0; i<pakli.size(); ++i){
+            cards.put(i+32,pakli2.getSortedCard(i));
+        }
+        for(int i = 0; i<2 * pakli.size(); ++i){
             NotFoundCards.put(i,"X");
         }
 
@@ -94,7 +102,7 @@ public class Parkereso{
             printMap(cards, NotFoundCards);
             System.out.println("Válassz egy kártyát és nyomj entert!");
             try {
-                choose = Integer.parseInt(br.readLine());
+                choose = Integer.parseInt(br.readLine())-1;
             } catch (IOException ex) {
                 System.err.println("Beolvasási hiba");
             }
@@ -103,7 +111,7 @@ public class Parkereso{
             printMap(cards, NotFoundCards);
             System.out.println("Válassz egy másik kártyát és nyomj entert!");
             try {
-                choose2 = Integer.parseInt(br.readLine());
+                choose2 = Integer.parseInt(br.readLine())-1;
             } catch (IOException ex) {
                 System.err.println("Beolvasási hiba");
             }
@@ -116,15 +124,16 @@ public class Parkereso{
             }
             for(int i = 0; i<NotFoundCards.size(); ++i){
                 if(NotFoundCards.get(i).equals("X")){
-                    System.out.println("Következő kör!");
+                    ;
                 } else {
                     allFound++;
                 }				
-            }
+            }            
             if(allFound == 64){
                 System.out.println("Megtaláltad az összes párt! A játéknak vége");
+                run = false;
             }
-            run = false;			
+            System.out.println("Következő kör!");			
         }			
     }
 }
