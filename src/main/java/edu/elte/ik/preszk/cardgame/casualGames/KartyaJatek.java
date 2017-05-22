@@ -3,6 +3,8 @@ package edu.elte.ik.preszk.cardgame.casualGames;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  * Ez az osztály az egyszemélyes kártyajátékok elindításáért felel.
  * @author Preszk Team
@@ -77,8 +79,14 @@ public class KartyaJatek {
 			treffnem.game();
 			break;
                 case 4:
-			// szinreSzin game metódusa, elindítja a játékot
-			szinreSzin.game();
+                {
+                    try {
+                        // szinreSzin game metódusa, elindítja a játékot
+                        szinreSzin.game();
+                    } catch (IOException ex) {
+                        System.err.println("Megnyitási hiba");
+                    }
+                }
 			break;
 		default:
 			break;
