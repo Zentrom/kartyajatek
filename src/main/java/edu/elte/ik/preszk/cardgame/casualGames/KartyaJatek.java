@@ -25,7 +25,8 @@ public class KartyaJatek {
 	 * @param admiralis {@link Admiralis} játék.
 	 * @param passziansz {@link Passziansz} játék.
 	 * @param treffnem {@link Treffnem} játék.
-         * @param szinreSzin {@link szinreSzin} játék.
+     * @param szinreSzin {@link SzinreSzin} játék.
+     * @param parkereso {@link Parkereso} játék.
 	 */
 	public KartyaJatek(BufferedReader stdin, Admiralis admiralis, Passziansz passziansz, Treffnem treffnem, SzinreSzin szinreSzin, Parkereso parkereso) {
 		this.stdin = stdin;

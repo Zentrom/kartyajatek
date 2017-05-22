@@ -29,6 +29,7 @@ public class SzinreSzin {
 
     /**
      * Elindítja a Színre szín kártyajátékot.
+     * @throws IOException ha olvasási hiba van.
      */
     void game() throws IOException {
         while(true){ 

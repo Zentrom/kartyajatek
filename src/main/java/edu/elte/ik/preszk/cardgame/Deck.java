@@ -182,6 +182,7 @@ public class Deck {
 	
         /**
 	 * Vissza adja, a megkevert pakli méretét
+	 * @return a pakli mérete
 	 */
         public int size(){
             return sortedDeck.size();

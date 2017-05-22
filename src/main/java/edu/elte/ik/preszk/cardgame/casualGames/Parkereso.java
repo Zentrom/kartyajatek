@@ -34,6 +34,7 @@ public class Parkereso{
 	
 	/**
 	 * Elindítja a párkereső kártyajátékot.
+	 * @throws IOException olvasási hiba esetén
 	 */
     public void game() throws IOException{
         System.out.println("Ezt a játékot bármilyen kártyával lehet játszani, Válassz hogy melyikkel szeretnéd: 1-magyar, 2-francia");
@@ -56,6 +57,8 @@ public class Parkereso{
     
     /**
     * kiírja a játékteret.
+    * @param cards a pakli
+    * @param NotFoundCards nem talált kártyák.
     */
     private void printMap(HashMap<Integer, String> cards, HashMap<Integer, String> NotFoundCards){
         //kezdő játéktér kiiratása
