@@ -1,5 +1,6 @@
 package edu.elte.ik.preszk.cardgame.casualGames;
 
+import edu.elte.ik.preszk.cardgame.panel.TreffPanel;
 import edu.elte.ik.preszk.cardgame.Deck;
 import java.io.BufferedReader;
 import java.io.IOException;
