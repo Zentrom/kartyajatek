@@ -30,7 +30,7 @@ public class App {
 	 * @throws IOException
 	 *             beolvasási hiba esetén.
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {        
 		int valasztas = -1;
 
 		System.out.println("\nKerem valasszon a menupontok kozul?\n");
