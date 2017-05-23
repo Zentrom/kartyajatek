@@ -182,7 +182,9 @@ public class SzerencseJatek {
 			stdin.close();
 			break;
 		}
-
+		
+		
+		
 		// System.out.println("Koszonjuk hogy ittvolt! Vegso vagyona: " +
 		// this.vagyon);
 	}
