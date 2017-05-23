@@ -28,12 +28,14 @@ public class Treffnem {
 	public Treffnem(BufferedReader br) {
 		this.br = br;
 	}
-	
+
 	/**
 	 * Elindítja a Treffnem kártyajátékot.
 	 */
     public void game(){
-        while(true){ 
+        TreffPanel panel = new TreffPanel();
+        panel.setVisible(true);
+        /*while(true){ 
             System.out.println("Ezt a játékot francia kártyával játszák. Tippeld meg hogy a következő kártya treff lesz e ;)");
             int pontszam = 0;
             Deck pakli = new Deck(false);
@@ -42,7 +44,6 @@ public class Treffnem {
             
             while(ingame < 30){
                 System.out.println("Treff - Clover? (igen-nem)");
-                
                 try {
 					
                 	choose = br.readLine();
@@ -73,6 +74,6 @@ public class Treffnem {
             //br.close();
             System.out.println("Vége a játéknak! - pontszámod: " + pontszam);
             break;
-        }
+        }*/
     }
 }
