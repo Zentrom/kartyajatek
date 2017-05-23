@@ -129,6 +129,7 @@ class Jatek extends Thread {
 					currentCard = bjHandler.getNextCardName();
 					dealerPoints[kor] = (kor == 1 ? -1 : bjHandler.getCardValue(currentCard));
 					dealerKartyak[kor] = currentCard;
+					
 					fpw.println("A dealer kartyat kapott: " + (kor != 1 ? dealerKartyak[kor] : "fejjel lefele van."));
 					System.out.println(
 							"A dealer kartyat kapott: " + (kor != 1 ? dealerKartyak[kor] : "fejjel lefele van."));
@@ -137,9 +138,9 @@ class Jatek extends Thread {
 
 				}
 				firstJatekosState = jatekHandler();
-				while (firstJatekosState == 0) {
-					fpw.println("Mit szeretne tenni?\n4.Kerek meg egy lapot!\n5.Megallok!");
-					int firstJatekosState = Integer.parseInt(fsc.nextLine());
+				while (Objects.equals(firstJatekosState,0)) {
+					fpw.println("Mit szeretne tenni? (4.Kerek meg egy lapot! vagy 5.Megallok!)");
+					firstJatekosState = Integer.parseInt(fsc.nextLine());
 
 					if (firstJatekosState == 4) { // 4-es state a lapkeres
 						currentCard = bjHandler.getNextCardName();
@@ -147,12 +148,12 @@ class Jatek extends Thread {
 						firstJatekosKartyak[0][kor] = currentCard;
 						fpw.println(firstJatekos + " kartyat kapott: " + firstJatekosKartyak[0][kor]);
 						System.out.println(firstJatekos + " kartyat kapott: " + firstJatekosKartyak[0][kor]);
-						jatekHandler();
+						firstJatekosState=jatekHandler();
 					} else { // 5-os state a megallas
 						if (kor == 2) {
-							dealerPoints[kor - 1] = bjHandler.getCardValue(currentCard);
-							fpw.println("A dealer felfedte a lapot: " + dealerKartyak[kor]);
-							System.out.println("A dealer felfedte a lapot: " + dealerKartyak[kor]);
+							dealerPoints[kor-1] = bjHandler.getCardValue(currentCard);
+							fpw.println("A dealer felfedte a lapot: " + dealerKartyak[kor-1]);
+							System.out.println("A dealer felfedte a lapot: " + dealerKartyak[kor-1]);
 						} else {
 							currentCard = bjHandler.getNextCardName();
 							dealerPoints[kor] = bjHandler.getCardValue(currentCard);
@@ -160,8 +161,9 @@ class Jatek extends Thread {
 							fpw.println("A dealer kartyat kapott: " + dealerKartyak[kor]);
 							System.out.println("A dealer kartyat kapott: " + dealerKartyak[kor]);
 						}
-						jatekHandler();
+						firstJatekosState=jatekHandler();
 					}
+					kor++;
 				}
 
 				if (firstJatekosState == 1)
@@ -181,6 +183,8 @@ class Jatek extends Thread {
 
 		} catch (IOException e) {
 			System.out.println("Szerver Iras-olvasasi hiba");
+		} catch (NoSuchElementException nos){
+			System.out.println("Megszakadt a kapcsolat a kliensel!");
 		}
 	}
 
@@ -202,7 +206,7 @@ class Jatek extends Thread {
 	/**
 	 * jatekos-állapotot módosít
 	 * 
-									 
+	 *								 
 	 * @return 1-re ha nyert 2,ha döntetlen,3 ha vesztett
 	 */
 	private int jatekHandler() { // jatekos-állapotot módosít 1-re ha nyert 2,ha

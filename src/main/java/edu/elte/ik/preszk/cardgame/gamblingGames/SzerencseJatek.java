@@ -134,19 +134,20 @@ public class SzerencseJatek {
 		System.out.println("A jelenlegi egyenlege: " + vagyon + " dollar\n");
 
 		int valasztas = -1;
-
+		
+		System.out.println("1.BlackJack");
+		System.out.println("2.Poker");
+		System.out.println("3.Nincs penzem");
+		System.out.println("0.Kilepes");
+		
 		while (valasztas != 0 && valasztas != 1 && valasztas != 2 && valasztas != 3) {
-				System.out.println("1.BlackJack");
-				System.out.println("2.Poker");
-				System.out.println("3.Nincs penzem");
-				System.out.println("0.Kilepes");
-
-				try {
-					valasztas = Integer.parseInt(stdin.readLine());
-				} catch (NumberFormatException ex) {
-					System.out.println("Írjon be egy számot!!");
-					valasztas = -1;
-				}
+				
+			try {
+				valasztas = Integer.parseInt(stdin.readLine());
+			} catch (NumberFormatException ex) {
+				System.out.println("Írjon be egy számot!!");
+				valasztas = -1;
+			}
 
 		}
 		switch (valasztas) {

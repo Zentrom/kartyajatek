@@ -31,6 +31,8 @@ public class BlackJackClient{
 		Scanner stdin = new Scanner(System.in);
 		//System.out.println("Adja meg a nevet!");
 		
+		//int indulasSzam = 0;
+		
 		try{
 			Socket socket = new Socket("localhost", 12345);
 			PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
@@ -41,12 +43,18 @@ public class BlackJackClient{
 			
 			if(sc.nextLine().equals("giveBets")){
 				while(bet > getVagyon()){
-					System.out.println("Kerem adja meg mennyit szeretne fogadni!");
-					bet=Integer.parseInt(stdin.nextLine());
+					try{
+						System.out.println("Kerem adja meg mennyit szeretne fogadni!");
+						bet=Integer.parseInt(stdin.nextLine());
+					}catch(NumberFormatException num){
+						System.out.println("Nem szamot irt be, ugyhogy bunteteskeppen all-in lesz!");
+						bet = getVagyon();
+					}
 				}
 				pw.println(bet);
 				System.out.println("Fogadas elkuldve a szervernek!");
 			}
+			
 			System.out.println(sc.nextLine());
 			System.out.println(sc.nextLine());
 			System.out.println(sc.nextLine());
@@ -60,7 +68,12 @@ public class BlackJackClient{
 				int valasztas=0;
 				
 				while(valasztas != 4 && valasztas!= 5){
-					valasztas= Integer.parseInt(stdin.nextLine());
+					try{
+						valasztas= Integer.parseInt(stdin.nextLine());
+					}catch(NumberFormatException num){
+						System.out.println("4-est vagy 5-ost irjon be!");
+						valasztas=9999;
+					}
 				}
 				pw.println(valasztas);
 				
@@ -90,7 +103,11 @@ public class BlackJackClient{
 			System.out.println("Nem sikerult szerverhez csatlakozni! Uj szerver indul!");
 			BlackJackServer BJServer= new BlackJackServer();
 			BJServer.main(new String[]{""});
+		}catch(NoSuchElementException nos){
+			System.out.println("Megszakadt a kapcsolat a szerverrel!");
 		}
+			
+			
 		
 		return getVagyon();
 	}
