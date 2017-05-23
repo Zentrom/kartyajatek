@@ -64,4 +64,41 @@
       </plugin>
  </plugins>
   </build>
+  
+  <developers>
+	<developer>
+		<id>Zentrom</id>
+		<name>Negrut Ákos</name>
+		<roles>
+			<role>developer</role>
+		</roles>
+        <timezone>Europe/Budapest</timezone>
+	</developer>
+	<developer>
+		<id>pkovacs1991</id>
+		<name>Kovács Péter</name>
+		<roles>
+			<role>developer</role>
+			<role>tester</role>
+		</roles>
+        <timezone>Europe/Budapest</timezone>
+	</developer>
+	<developer>
+		<id>lipcseiadam</id>
+		<name>Lipcsei Ádám</name>
+		<roles>
+			<role>developer</role>
+		</roles>
+        <timezone>Europe/Budapest</timezone>
+	</developer>
+	<developer>
+		<id>csaba321</id>
+		<name>Miklecz Csaba</name>
+		<roles>
+			<role>developer</role>
+		</roles>
+        <timezone>Europe/Budapest</timezone>
+	</developer>
+  </developers>
+  
 </project>
