@@ -47,14 +47,9 @@ public class Deck {
         }
     }
     
-    public Card huzLap(){
+    public Card drawCard(){
         Card id = pakli.get(0);
         pakli.remove(0);
-        return id;
-    }
-    
-    public Card getLap(int i){
-        Card id = pakli.get(i);
         return id;
     }
     
