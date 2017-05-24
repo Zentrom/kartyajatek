@@ -46,14 +46,14 @@ public class Deck {
             }
         }
     }
-    
+    //kihúz 1 lapot a pakliból
     public Card drawCard(){
         Card id = pakli.get(0);
         pakli.remove(0);
         return id;
     }
-    
-    public void kever(){			//paklikeverés egy arrayListbe
+    //megkeveri a paklit
+    public void kever(){			
 		Random random = new Random();
 		ArrayList<Card> id = new ArrayList();
                 int szam;
