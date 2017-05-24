@@ -22,7 +22,9 @@ public class SzerencseJatek {
 
 	/**
 	 * Többszemélyes játékok menüjének elíndításáért felelős konstruktor.
-	 * 
+	 * @param stdin {@link BufferedReader} beolvasásra szolgál.
+	 * @param blackJack {@link BlackJackClient} a Black Jack kliens
+	 * @param pokerClient {@link PokerClient} a póker kliens
 	 * @throws IOException
 	 *             ha olvasási hiba van.
 	 */

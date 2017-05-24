@@ -90,12 +90,8 @@ public class KartyaJatek {
 			treffnem.game();
 			break;
 		case 4: {
-			try {
 				// szinreSzin game metódusa, elindítja a játékot
 				szinreSzin.game();
-			} catch (IOException ex) {
-				System.err.println("Megnyitási hiba");
-			}
 		}
 			break;
 		case 5: {

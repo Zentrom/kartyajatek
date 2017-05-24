@@ -117,6 +117,9 @@ public class ParkeresoPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Elindítja a játékot.
+	 */
 	public void run() {
 		JFrame frame = new JFrame();
 		frame.setTitle("Párkereső");

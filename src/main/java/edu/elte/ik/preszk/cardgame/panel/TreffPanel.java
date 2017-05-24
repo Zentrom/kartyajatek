@@ -18,6 +18,7 @@ public class TreffPanel extends javax.swing.JFrame {
 
     /**
      * Creates new form TreffPanel
+     * @param treffNemController {@link TreffNemController} a Treffnem játék controllere
      */
     public TreffPanel(TreffNemController treffNemController) {
     	this.treffNemController = treffNemController;
@@ -170,6 +171,7 @@ public class TreffPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
+     * Elindítja a TreffNem játékot
      * @param args the command line arguments
      */
     public static void main(String args[]) {

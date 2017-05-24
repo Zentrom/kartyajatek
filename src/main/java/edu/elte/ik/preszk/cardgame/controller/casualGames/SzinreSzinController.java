@@ -6,6 +6,11 @@ import java.util.Random;
 
 import edu.elte.ik.preszk.cardgame.Deck;
 
+/**
+ * A színre szín játék funkcionalitásáért felel.
+ * @author Preszk Team
+ *
+ */
 public class SzinreSzinController {
 
 	private Deck pakli;
@@ -17,11 +22,19 @@ public class SzinreSzinController {
 	// számítógép
 	private List<String> player2 = new ArrayList<>();
 
+	/**
+	 * A színre szín kontrollerének konstruktora.
+	 * @param pakli {@link Deck} a pakli.
+	 * @param random {@link Random} random generátor
+	 */
 	public SzinreSzinController(Deck pakli, Random random) {
 		this.pakli = pakli;
 		this.random = random;
 	}
 
+	/**
+	 * Bekeveri a paklit és szétosztja
+	 */
 	public void setDecks() {
 		for (int i = 0; i < 16; ++i) {
 			player1.add(pakli.getSortedCard(i));
@@ -31,10 +44,19 @@ public class SzinreSzinController {
 		}
 	}
 
+	/**
+	 * Visszaadja a játékos pakliját.
+	 * @return a játékos paklija
+	 */
 	public List<String> getJatekosPakli() {
 		return player1;
 	}
 
+	/**
+	 * Megnézi, hogy helyes lépés-e
+	 * @param choosed a választott kártyánk
+	 * @return igaz, ha letehetjük a kártyát különben hamis.
+	 */
 	public boolean isCorrect(String choosed) {
 		boolean correct = false;
 		if (lastCard.isEmpty()) {
@@ -53,11 +75,16 @@ public class SzinreSzinController {
 		return correct;
 	}
 
+	/**
+	 * Tud-e rakni a gép kártyát.
+	 * @return igaz ha tud rakni különben hamis.
+	 */
 	public boolean gepTudERakni() {
 		boolean isCorrect = false;
-		List<String> lehetosegek = getLehetosegek();;
+		List<String> lehetosegek = getLehetosegek();
+		;
 		getLehetosegek();
-		
+
 		if (!lehetosegek.isEmpty()) {
 			int num = random.nextInt(lehetosegek.size() - 1);
 			lastCard = lehetosegek.get(num).toString();
@@ -65,7 +92,7 @@ public class SzinreSzinController {
 			player2.remove(lehetosegek.get(num));
 			isCorrect = true;
 		}
-		
+
 		return isCorrect;
 	}
 
@@ -81,10 +108,18 @@ public class SzinreSzinController {
 		return lehetosegek;
 	}
 
+	/**
+	 * Visszatér a gép lapjával
+	 * @return a gép utolsó lapja
+	 */
 	public String getGepLapja() {
 		return gepLapja;
 	}
 
+	/**
+	 * Utoljára kijátszott lap.
+	 * @return az utoljára kijátszott lap
+	 */
 	public String getUtolsoLap() {
 		return lastCard;
 	}

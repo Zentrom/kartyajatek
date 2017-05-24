@@ -29,6 +29,14 @@ public class PokerServer{
 		jatek.start();
 	}
 
+	/**
+	 * Elindítja a szervert
+	 * 
+	 * @param args
+	 *            bemeneti argumentumok
+	 * @throws IOException
+	 *             ha olvasási hiba van.
+	 */
 	public static void main(String args[]) throws IOException {
 		// BlackJackServer bjServer= new BlackJackServer();
 
@@ -126,7 +134,7 @@ class PokerJatek extends Thread {
 	
 	/**
 	 * Beállítja a játékos egyik kártyáját.
-	 * 
+	 *  @param hely jatekos helye
 	 */
 	private void handleSzett(int hely){
 		String tmp[] = pokerPakli.getSortedCard(hanyadik).split(" ");
@@ -138,7 +146,8 @@ class PokerJatek extends Thread {
 	
 	/**
 	 * Lekezeli a Poker játékot a játékos kártyái alapján.
-	 * 
+	 * @param jatekosKartyak a jatekos kartyai
+	 * @param pw {@link PrintWriter} üzenet küldésére szolgál
 	 */
 	private void jatekHandler(String jatekosKartyak[][], PrintWriter pw) { 
 		//try{

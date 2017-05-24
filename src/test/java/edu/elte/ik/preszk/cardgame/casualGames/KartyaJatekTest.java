@@ -112,21 +112,7 @@ public class KartyaJatekTest {
 		
 	}
 	
-	@Test
-	public void testStartWhenSzinreSzinException() {
-		//GIVEN
-		try {
-			Mockito.when(br.readLine()).thenReturn("4");
-			Mockito.doNothing().when(szinreSzin).game();
-			Mockito.doThrow(IOException.class).when(szinreSzin).game();
-		} catch (IOException e) {
-		}
-		
-		//WHEN
-		kartyajatek.start();
-		//THEN
-		
-	}
+
 	
 	@Test
 	public void testStartWhenParkereso() {

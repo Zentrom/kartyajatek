@@ -68,8 +68,8 @@ public class App {
 			BufferedReader stdinkartya = new BufferedReader(new InputStreamReader(System.in));
 			Admiralis admiralis = new Admiralis();
 			Passziansz passziansz = new Passziansz();
-			Treffnem treffNem = new Treffnem(stdinkartya);
-			SzinreSzin szinreSzin = new SzinreSzin(stdinkartya);
+			Treffnem treffNem = new Treffnem();
+			SzinreSzin szinreSzin = new SzinreSzin();
 			Parkereso parkereso = new Parkereso(stdinkartya);
 			KartyaJatek kartyaJ = new KartyaJatek(stdinkartya, admiralis, passziansz, treffNem, szinreSzin, parkereso);
 			kartyaJ.start();

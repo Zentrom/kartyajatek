@@ -33,6 +33,14 @@ public class BlackJackServer {
 		jatek.start();
 	}
 
+	/**
+	 * Elindítja a szervert
+	 * 
+	 * @param args
+	 *            bemeneti argumentumok
+	 * @throws IOException
+	 *             ha olvasási hiba van.
+	 */
 	public static void main(String args[]) throws IOException {
 		// BlackJackServer bjServer= new BlackJackServer();
 
@@ -57,7 +65,7 @@ class Jatek extends Thread {
 	Boolean elsoDeal = false;
 	String currentCard;
 	int playerKor = 0;
-	
+
 	int dealerKor = 0;
 	String dealerKartyak[] = new String[5];
 	int dealerPoints[] = new int[5];
@@ -107,13 +115,13 @@ class Jatek extends Thread {
 
 			while (folytatodik != 0) {
 				System.out.println("A jatek elkezdodik!");
-				
+
 				reset();
 				firstJatekos = fsc.nextLine();
 				fpw.println("giveBets");
 				firstBet = Integer.parseInt(fsc.nextLine());
 
-				//jatekVege = false;
+				// jatekVege = false;
 				while (playerKor < 2) {
 
 					currentCard = bjHandler.getNextCardName();
@@ -132,17 +140,17 @@ class Jatek extends Thread {
 					currentCard = bjHandler.getNextCardName();
 					dealerPoints[dealerKor] = (dealerKor == 1 ? -1 : bjHandler.getCardValue(currentCard));
 					dealerKartyak[dealerKor] = currentCard;
-					
-					fpw.println("A dealer kartyat kapott: " + (dealerKor != 1 ? dealerKartyak[dealerKor] : "fejjel lefele van."));
-					System.out.println(
-							"A dealer kartyat kapott: " + dealerKartyak[dealerKor]);
+
+					fpw.println("A dealer kartyat kapott: "
+							+ (dealerKor != 1 ? dealerKartyak[dealerKor] : "fejjel lefele van."));
+					System.out.println("A dealer kartyat kapott: " + dealerKartyak[dealerKor]);
 
 					playerKor++;
 					dealerKor++;
 
 				}
 				firstJatekosState = jatekHandler();
-				while (Objects.equals(firstJatekosState,0)) {
+				while (Objects.equals(firstJatekosState, 0)) {
 					fpw.println("Mit szeretne tenni? (4.Kerek meg egy lapot! vagy 5.Megallok!)");
 					firstJatekosState = Integer.parseInt(fsc.nextLine());
 
@@ -153,11 +161,11 @@ class Jatek extends Thread {
 						fpw.println(firstJatekos + " kartyat kapott: " + firstJatekosKartyak[0][playerKor]);
 						System.out.println(firstJatekos + " kartyat kapott: " + firstJatekosKartyak[0][playerKor]);
 						playerKor++;
-						firstJatekosState=jatekHandler();
+						firstJatekosState = jatekHandler();
 					} else { // 5-os state a megallas
 						if (!elsoDeal) {
 							dealerPoints[1] = bjHandler.getCardValue(currentCard);
-							elsoDeal=true;
+							elsoDeal = true;
 							fpw.println("A dealer felfedte a lapot: " + dealerKartyak[1]);
 							System.out.println("A dealer felfedte a lapot: " + dealerKartyak[1]);
 						} else {
@@ -168,7 +176,7 @@ class Jatek extends Thread {
 							System.out.println("A dealer kartyat kapott: " + dealerKartyak[dealerKor]);
 							dealerKor++;
 						}
-						firstJatekosState=jatekHandler();
+						firstJatekosState = jatekHandler();
 					}
 				}
 
@@ -180,20 +188,20 @@ class Jatek extends Thread {
 					fpw.println("STATE LOSE");
 
 				// System.out.println("Vege a jateknak! Lesz folytatas?");
-				//pw.println("Szeretne folytatni?igen/nem");
-				
-				folytatodik=Integer.parseInt(fsc.nextLine());
+				// pw.println("Szeretne folytatni?igen/nem");
+
+				folytatodik = Integer.parseInt(fsc.nextLine());
 			}
 
 			fsc.close();
 			fpw.close();
 			firstClient.close();
-			
+
 			System.exit(0);
 
 		} catch (IOException e) {
 			System.out.println("Szerver Iras-olvasasi hiba");
-		} catch (NoSuchElementException nos){
+		} catch (NoSuchElementException nos) {
 			System.out.println("Megszakadt a kapcsolat a kliensel!");
 		}
 	}
@@ -201,7 +209,8 @@ class Jatek extends Thread {
 	/**
 	 * A játékos pontjainak összesítése
 	 * 
-	 * @param kartyaSzett a játékos által felhúzott lapok tömbje.
+	 * @param kartyaSzett
+	 *            a játékos által felhúzott lapok tömbje.
 	 * @return a játékos pontjai
 	 */
 	private int osszesit(int[] kartyaSzett) { // jatekos/dealer pontjainak
@@ -216,7 +225,7 @@ class Jatek extends Thread {
 	/**
 	 * jatekos-állapotot módosít
 	 * 
-	 *								 
+	 * 
 	 * @return 1-re ha nyert 2,ha döntetlen,3 ha vesztett
 	 */
 	private int jatekHandler() { // jatekos-állapotot módosít 1-re ha nyert 2,ha
@@ -255,7 +264,6 @@ class Jatek extends Thread {
 
 	}
 
-	
 	/**
 	 * mindent visszaállít alapértékre.
 	 */
@@ -272,14 +280,14 @@ class Jatek extends Thread {
 		// dealerPoints={0,0,0,0,0};
 
 		for (int i = 0; i < 4; i++) {
-			dealerKartyak[i]="";
-			dealerPoints[i]=0;
+			dealerKartyak[i] = "";
+			dealerPoints[i] = 0;
 			for (int j = 0; j < 5; j++) {
 				firstJatekosKartyak[i][j] = "";
 				firstPoints[i][j] = 0;
 			}
 		}
-		
+
 	}
 
 }
