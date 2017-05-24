@@ -43,10 +43,18 @@ public class BlackJackClient {
 
 			while (folytatas != 0) {
 				pw.println(getUsername());
+<<<<<<< HEAD
 
 				if (sc.nextLine().equals("giveBets")) {
 					while (bet > getVagyon()) {
 						try {
+=======
+				bet=9999999;
+				
+				if(sc.nextLine().equals("giveBets")){
+					while(bet > getVagyon()){
+						try{
+>>>>>>> 43f8dcf67941b757dd89dd60ce8e5e2385a447a6
 							System.out.println("Kerem adja meg mennyit szeretne fogadni!");
 							bet = Integer.parseInt(stdin.nextLine());
 						} catch (NumberFormatException num) {
