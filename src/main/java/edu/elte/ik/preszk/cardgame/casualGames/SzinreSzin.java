@@ -6,6 +6,7 @@
 package edu.elte.ik.preszk.cardgame.casualGames;
 
 import edu.elte.ik.preszk.cardgame.Deck;
+import edu.elte.ik.preszk.cardgame.panel.SzinPanel;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,7 +33,9 @@ public class SzinreSzin {
      * @throws IOException ha olvasási hiba van.
      */
     void game() throws IOException {
-        while(true){ 
+        SzinPanel panel = new SzinPanel();
+        panel.setVisible(true);
+        /*while(true){ 
             System.out.println("Ezt a játékot magyar kártyával játszák. Színre színt kell raknod. Az nyer akinek elfogynak a lapjai");
             //a játékos
             List player1 = new ArrayList();
@@ -123,7 +126,7 @@ public class SzinreSzin {
             }
             System.out.println("A játék véget ért");
             break;
-        }
+        }*/
     }
     
     
