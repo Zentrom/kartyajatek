@@ -6,6 +6,8 @@
 package edu.elte.ik.preszk.cardgame.panel;
 
 import edu.elte.ik.preszk.cardgame.Deck;
+import edu.elte.ik.preszk.cardgame.controller.casualGames.SzinreSzinController;
+
 import java.io.BufferedReader;
 import static java.lang.System.exit;
 import java.util.ArrayList;
@@ -21,20 +23,16 @@ public class SzinPanel extends javax.swing.JFrame {
     /**
      * Creates new form SzinPanel
      */
-    Deck pakli = new Deck(true);
-    //a játékos
-    List player1 = new ArrayList();
-    //számítógép
-    List player2 = new ArrayList();
+	SzinreSzinController controller;
     String choose = "";
-    String lastCard = "";
+   
     int choosed = 0;
     
-    public SzinPanel() {
-        
-        setDecks(player1,player2,pakli);
-        
+    public SzinPanel(SzinreSzinController controller) {
+    	this.controller = controller;
+        controller.setDecks();
         initComponents();
+        List<String> player1 = controller.getJatekosPakli();
         for(int i = 0; i<player1.size(); ++i){
             lapokBox.addItem(player1.get(i).toString());
         }
@@ -42,14 +40,7 @@ public class SzinPanel extends javax.swing.JFrame {
     
     
     
-    public void setDecks(List player1, List player2,Deck pakli){
-        for(int i = 0; i<16; ++i){
-            player1.add(pakli.getSortedCard(i));
-        }
-        for(int i = 16; i<32; ++i){
-            player2.add(pakli.getSortedCard(i));
-        }
-    }
+   
     
     
     /**
@@ -162,49 +153,26 @@ public class SzinPanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        felsoLap.setText(lastCard);
-        boolean Correct = false;
-        if(lastCard.isEmpty()){
-            lastCard = lapokBox.getItemAt(choosed);
-            felsoLap.setText(lapokBox.getItemAt(choosed));
+    	felsoLap.setText(controller.getUtolsoLap());
+        boolean correct = controller.isCorrect(lapokBox.getItemAt(choosed));
+        
+        if(correct){
+        	System.out.println(lapokBox.getItemAt(choosed));
+        	felsoLap.setText(lapokBox.getItemAt(choosed));
             elozolapText.setText(lapokBox.getItemAt(choosed));
-            lapokBox.removeItemAt(choosed);            
-            Correct = true;
-        }else{
-            String playerstr[] = lapokBox.getItemAt(choosed).split(" ");
-            String laststr[] = lastCard.split(" ");
-            if(playerstr[0].equals(laststr[0]) || playerstr[1].equals(laststr[1])){
-                lastCard = lapokBox.getItemAt(choosed);
-                felsoLap.setText(lapokBox.getItemAt(choosed));
-                elozolapText.setText(lapokBox.getItemAt(choosed));
-                lapokBox.removeItemAt(choosed);
-                Correct = true;
-            }else
-                eredmenyField.setText("Ezt a lapot nem tudod letenni!");
-        }
-        if(Correct){
+            lapokBox.removeItemAt(choosed);
             //gép
-            Random random = new Random();
-            boolean isCorrect = false;
-            int count = 0;
-            while(!isCorrect){
-                int num = random.nextInt(player2.size()-1);
-                String laststr[] = lastCard.split(" ");
-                String playerstr[] = player2.get(num).toString().split(" ");
-                if(playerstr[0].equals(laststr[0]) || playerstr[1].equals(laststr[1])){
-                    lastCard = player2.get(num).toString();
-                    felsoLap.setText(player2.get(num).toString());
-                    player2.remove(num);
-                    isCorrect = true;
-                }else{
-                    count++;
-                }
-                if(count == 3 * player2.size()){
-                    eredmenyField.setText("A gépi játékos nem tud rakni! Nyertél!");
-                    isCorrect = true;
-                    lapokBox.removeAllItems();
-                }
+            boolean gepTudERakni = controller.gepTudERakni();
+            if(gepTudERakni) {
+            	String gepLapja = controller.getGepLapja();
+            	felsoLap.setText(gepLapja);
+            } else {
+            	eredmenyField.setText("A gépi játékos nem tud rakni! Nyertél!");
+            	lapokBox.removeAllItems();
             }
+            
+        } else {
+        	eredmenyField.setText("Ezt a lapot nem tudod letenni!");
         }
     }//GEN-LAST:event_okBtnActionPerformed
 
@@ -246,7 +214,7 @@ public class SzinPanel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SzinPanel().setVisible(true);
+                new SzinPanel(new SzinreSzinController(new Deck(true), new Random())).setVisible(true);
             }
         });
     }

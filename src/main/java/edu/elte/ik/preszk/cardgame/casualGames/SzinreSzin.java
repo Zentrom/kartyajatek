@@ -5,13 +5,13 @@
  */
 package edu.elte.ik.preszk.cardgame.casualGames;
 
-import edu.elte.ik.preszk.cardgame.Deck;
-import edu.elte.ik.preszk.cardgame.panel.SzinPanel;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
+
+import edu.elte.ik.preszk.cardgame.Deck;
+import edu.elte.ik.preszk.cardgame.controller.casualGames.SzinreSzinController;
+import edu.elte.ik.preszk.cardgame.panel.SzinPanel;
 
 /**
  *
@@ -33,7 +33,7 @@ public class SzinreSzin {
      * @throws IOException ha olvasási hiba van.
      */
     void game() throws IOException {
-        SzinPanel panel = new SzinPanel();
+        SzinPanel panel = new SzinPanel(new SzinreSzinController(new Deck(true), new Random()));
         panel.setVisible(true);
         /*while(true){ 
             System.out.println("Ezt a játékot magyar kártyával játszák. Színre színt kell raknod. Az nyer akinek elfogynak a lapjai");
