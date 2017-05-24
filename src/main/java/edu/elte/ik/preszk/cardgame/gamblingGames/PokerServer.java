@@ -92,18 +92,21 @@ class PokerJatek extends Thread {
 
 				for(int i=0;i<5;i++){
 					handleSzett(i);
-					fpw.println("Az " + i + ". kapott kartyaja: " + firstJatekosKartyak[0][i] + " " + firstJatekosKartyak[1][i]);
-					System.out.println(firstJatekos +" " + i + ". kapott kartyaja: " + firstJatekosKartyak[0][i] + " " + firstJatekosKartyak[1][i]);
+					fpw.println("Az " + (i+1) + ". kapott kartyaja: " + firstJatekosKartyak[0][i] + " " + firstJatekosKartyak[1][i]);
+					System.out.println(firstJatekos +" " + (i+1) + ". kapott kartyaja: " + firstJatekosKartyak[0][i] + " " + firstJatekosKartyak[1][i]);
 				}
 				
+				uzenet=fsc.nextLine();
 				int tmpSzam=0;
-				while(!uzenet.equals("0")){
-					uzenet=fsc.nextLine();
+				while(!uzenet.equals("-1")){
 					tmpSzam=Integer.parseInt(uzenet);
 					handleSzett(tmpSzam);
-					fpw.println("Az " + tmpSzam + ". kapott kartyaja: " + firstJatekosKartyak[0][tmpSzam] + " " + firstJatekosKartyak[1][tmpSzam]);
-					System.out.println(firstJatekos +" " + tmpSzam + ". kapott kartyaja: " + firstJatekosKartyak[0][tmpSzam] + " " + firstJatekosKartyak[1][tmpSzam]);
+					fpw.println("Az " + (tmpSzam+1)+ ". kapott kartyaja: " + firstJatekosKartyak[0][tmpSzam] + " " + firstJatekosKartyak[1][tmpSzam]);
+					System.out.println(firstJatekos +" " + (tmpSzam+1) + ". kapott kartyaja: " + firstJatekosKartyak[0][tmpSzam] + " " + firstJatekosKartyak[1][tmpSzam]);
+					uzenet=fsc.nextLine();
 				}
+				
+				Thread.sleep(2000);
 				
 				jatekHandler(firstJatekosKartyak, fpw);
 				
@@ -121,6 +124,8 @@ class PokerJatek extends Thread {
 			System.out.println("Szerver Iras-olvasasi hiba");
 		} catch (NoSuchElementException nos){
 			System.out.println("Megszakadt a kapcsolat a kliensel!");
+		} catch (InterruptedException inter){
+			System.out.println("Interruptalodott szepen!");
 		}
 	}
 	
@@ -630,7 +635,7 @@ class PokerJatek extends Thread {
 			
 			//ThreeOfAKind
 			if(fullHouseElsoFelt){
-				pw.println("STATE ThreeOfAKing");
+				pw.println("STATE ThreeOfAKind");
 				System.out.println(firstJatekos+ " nyert! Three Of A Kind!");
 				return;
 			}

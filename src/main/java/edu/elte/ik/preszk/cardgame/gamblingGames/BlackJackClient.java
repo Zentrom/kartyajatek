@@ -41,6 +41,7 @@ public class BlackJackClient{
 			
 			while(folytatas!=0){
 				pw.println(getUsername());
+				bet=9999999;
 				
 				if(sc.nextLine().equals("giveBets")){
 					while(bet > getVagyon()){
