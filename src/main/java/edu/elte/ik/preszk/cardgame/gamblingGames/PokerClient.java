@@ -19,6 +19,7 @@ public class PokerClient {
 
 	/**
 	 * Új kliens létrehozásáért felelős konstruktor.
+	 * @throws UnknownHostException ha a hoszt ismeretlen
 	 */
 	public PokerClient() throws UnknownHostException {
 
