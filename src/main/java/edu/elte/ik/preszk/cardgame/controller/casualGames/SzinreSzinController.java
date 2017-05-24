@@ -8,14 +8,14 @@ import edu.elte.ik.preszk.cardgame.Deck;
 
 public class SzinreSzinController {
 
-	Deck pakli;
-	String lastCard = "";
-	String gepLapja = "";
-	Random random;
+	private Deck pakli;
+	private String lastCard = "";
+	private String gepLapja = "";
+	private Random random;
 	// a játékos
-	List<String> player1 = new ArrayList<>();
+	private List<String> player1 = new ArrayList<>();
 	// számítógép
-	List<String> player2 = new ArrayList<>();
+	private List<String> player2 = new ArrayList<>();
 
 	public SzinreSzinController(Deck pakli, Random random) {
 		this.pakli = pakli;

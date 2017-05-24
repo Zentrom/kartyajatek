@@ -10,7 +10,7 @@ public class TreffNemController {
     private int szamtomb[] = {2,3,4,5,6,7,8,9,10,11,20,30,40};
 	private Deck deck;
 	private Random random;
-	String szin = "";
+	private String szin = "";
 	
 	public TreffNemController(Deck deck, Random random) {
 		this.deck = deck;

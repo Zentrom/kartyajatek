@@ -10,6 +10,7 @@ package edu.elte.ik.preszk.cardgame.casualGames;
  * @author Lipcsei
  */
 import edu.elte.ik.preszk.cardgame.Deck;
+import edu.elte.ik.preszk.cardgame.controller.casualGames.ParkeresoController;
 import edu.elte.ik.preszk.cardgame.panel.ParkeresoPanel;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,13 +47,13 @@ public class Parkereso{
             case 1:
                 //magyar kártyával indítja a játékot
                 //parkereso(true);
-                ParkeresoPanel panel = new ParkeresoPanel(true);
-                panel.run();
+                ParkeresoPanel panel = new ParkeresoPanel(new ParkeresoController(new Deck(true), new Deck(true)));
+                panel.run(); 
                 break;
             case 2:
                 //francia kártyával indítja a játékot
                 //parkereso(false);
-                ParkeresoPanel panel2 = new ParkeresoPanel(false);
+                ParkeresoPanel panel2 = new ParkeresoPanel(new ParkeresoController(new Deck(false), new Deck(false)));
                 panel2.run();
                 break;
             default:
