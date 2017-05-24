@@ -141,11 +141,542 @@ class PokerJatek extends Thread {
 	 * 
 	 */
 	private void jatekHandler(String jatekosKartyak[][], PrintWriter pw) { 
-		/*try{
+		//try{
+			Boolean ugyanazASzin = true;
+			String tmpSzin = jatekosKartyak[0][0];
+			for(int i=1;i<5;i++){
+				if(!jatekosKartyak[0][i].equals(tmpSzin)){
+					ugyanazASzin= false;
+				}
+			}
 			
-		}catch(IOException io){
-			System.out.println("Szerver irasi hiba!");
-		}*/
+			//royalFlush
+			Boolean vaneRoyal = true;
+			Boolean royalFlush[]= new Boolean[5];
+			Arrays.fill(royalFlush,false);
+			int royalIndex = 0;
+			if(ugyanazASzin){
+				for(int i=0;i<5;i++){
+					if(jatekosKartyak[1][i].equals("A")){
+						royalFlush[royalIndex] = true;
+						royalIndex++;
+						break;
+					}
+				}
+				for(int i=0;i<5;i++){
+					if(jatekosKartyak[1][i].equals("K")){
+						royalFlush[royalIndex] = true;
+						royalIndex++;
+						break;
+					}
+				}
+				for(int i=0;i<5;i++){
+					if(jatekosKartyak[1][i].equals("Q")){
+						royalFlush[royalIndex] = true;
+						royalIndex++;
+						break;
+					}
+				}
+				for(int i=0;i<5;i++){
+					if(jatekosKartyak[1][i].equals("J")){
+						royalFlush[royalIndex] = true;
+						royalIndex++;
+						break;
+					}
+				}
+				for(int i=0;i<5;i++){
+					if(jatekosKartyak[1][i].equals("10")){
+						royalFlush[royalIndex] = true;
+						royalIndex++;
+						break;
+					}
+				}
+			}
+			for(int i=0;i<5;i++){
+				if(royalFlush[i]==false) vaneRoyal=false;
+			}
+			
+			if(vaneRoyal){
+				pw.println("STATE RoyalFlush");
+				System.out.println(firstJatekos+ " nyert! Royal Flush!");
+				return;
+			}
+			
+			//Arrays.sort(jatekosKartyak);
+			Boolean kovetikEgymast = false;
+			//Boolean egyezesek[] = new Boolean[5];
+			//Arrays.fill(egyezesek,false)
+			//egyezesek[0] = true;
+			int egyezesekSzam = 1;
+			String kezdoKartya = jatekosKartyak[1][0];
+			switch(kezdoKartya){
+				case "A":
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("K")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("Q")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("J")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("10")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					if(egyezesekSzam==5) kovetikEgymast=true;
+					break;
+				case "K":
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("Q")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("J")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("10")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("9")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					if(egyezesekSzam==5) kovetikEgymast=true;
+					break;
+				case "Q":
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("J")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("10")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("9")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("8")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					if(egyezesekSzam==5) kovetikEgymast=true;
+					break;
+				case "J":
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("10")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("9")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("8")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("7")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					if(egyezesekSzam==5) kovetikEgymast=true;
+					break;
+				case "10":
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("9")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("8")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("7")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("6")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					if(egyezesekSzam==5) kovetikEgymast=true;
+					break;
+				case "9":
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("8")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("7")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("6")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("5")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					if(egyezesekSzam==5) kovetikEgymast=true;
+					break;
+				case "8":
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("7")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("6")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("5")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("4")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					if(egyezesekSzam==5) kovetikEgymast=true;
+					break;
+				case "7":
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("6")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("5")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("4")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("3")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					if(egyezesekSzam==5) kovetikEgymast=true;
+					break;
+				case "6":
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("5")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("4")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("3")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("2")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					if(egyezesekSzam==5) kovetikEgymast=true;
+					break;
+				case "5":
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("4")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("3")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("2")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("A")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					if(egyezesekSzam==5) kovetikEgymast=true;
+					break;
+				case "4":
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("3")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("2")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("A")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("K")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					if(egyezesekSzam==5) kovetikEgymast=true;
+					break;
+				case "3":
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("2")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("A")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("K")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("Q")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					if(egyezesekSzam==5) kovetikEgymast=true;
+					break;
+				case "2":
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("A")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("K")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("Q")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					for(int i=1;i<5;i++){
+						if(jatekosKartyak[1][i].equals("J")){
+							egyezesekSzam++;
+							break;
+						}
+					}
+					if(egyezesekSzam==5) kovetikEgymast=true;
+					break;
+			}
+			
+			//StraightFlush
+			if(ugyanazASzin && kovetikEgymast){
+				pw.println("STATE StraightFlush");
+				System.out.println(firstJatekos+ " nyert! Straight Flush!");
+				return;
+			}
+			
+			int parSzam[] = {1,0,0,0};
+			String masodKartya = "";
+			String harmadKartya ="";
+			String negyedKartya = "";
+			for(int i=1;i<5;i++){
+				if(kezdoKartya.equals(jatekosKartyak[1][i])){
+					parSzam[0]++;
+				}else if(masodKartya.equals("") || masodKartya.equals(jatekosKartyak[1][i])){
+					masodKartya = jatekosKartyak[1][i];
+					parSzam[1]++;
+				}else if(harmadKartya.equals("") || harmadKartya.equals(jatekosKartyak[1][i])){
+					harmadKartya = jatekosKartyak[1][i];
+					parSzam[2]++;
+				}else if(negyedKartya.equals("") || negyedKartya.equals(jatekosKartyak[1][i])){
+					negyedKartya = jatekosKartyak[1][i];
+					parSzam[3]++;
+				}
+			}
+			
+			//FourOfAKind
+			Boolean fourOfAKind = false;
+			for(int i=0;i<4;i++){
+				if(parSzam[i]==4) fourOfAKind = true;
+			}
+			
+			if(fourOfAKind){
+				pw.println("STATE FourOfAKind");
+				System.out.println(firstJatekos+ " nyert! Four Of A Kind!");
+				return;
+			}
+			//FullHouse
+			Boolean fullHouseElsoFelt = false;
+			Boolean fullHouseMasodikFelt = false;
+			for(int i=0;i<4;i++){
+				if(parSzam[i]==3) fullHouseElsoFelt = true;
+				if(parSzam[i]==2) fullHouseMasodikFelt = true;
+			}
+			
+			if(fullHouseElsoFelt && fullHouseMasodikFelt){
+				pw.println("STATE FullHouse");
+				System.out.println(firstJatekos+ " nyert! Full House!");
+				return;
+			}
+			
+			//Flush
+			if(ugyanazASzin){
+				pw.println("STATE Flush");
+				System.out.println(firstJatekos+ " nyert! Flush!");
+				return;
+			}
+			
+			//Straight
+			if(kovetikEgymast){
+				pw.println("STATE Straight");
+				System.out.println(firstJatekos+ " nyert! Straight!");
+				return;
+			}
+			
+			//ThreeOfAKind
+			if(fullHouseElsoFelt){
+				pw.println("STATE ThreeOfAKing");
+				System.out.println(firstJatekos+ " nyert! Three Of A Kind!");
+				return;
+			}
+			
+			//TwoPair
+			Boolean twoPairElso = false;
+			Boolean twoPairMasodik = false;
+			for(int i=0;i<4;i++){
+				if(parSzam[i]==2 && twoPairElso==true) twoPairMasodik = true;
+				if(parSzam[i]==2) twoPairElso=true;
+			}
+			
+			if(twoPairElso && twoPairMasodik){
+				pw.println("STATE TwoPair");
+				System.out.println(firstJatekos+ " nyert! Two Pair!");
+				return;
+			}
+			
+			//OnePair
+			if(twoPairElso){
+				pw.println("STATE OnePair");
+				System.out.println(firstJatekos+ " nyert! One Pair!");
+				return;
+			}
+			
+			//JacksOrBetter
+			Boolean jacksOrBetter = false;
+			for(int i=0;i<5;i++){
+				if(jatekosKartyak[1][i].equals("A") || jatekosKartyak[1][i].equals("K") || jatekosKartyak[1][i].equals("Q") || jatekosKartyak[1][i].equals("J")){
+					jacksOrBetter = true;
+				}
+			}
+			
+			if(jacksOrBetter){
+				pw.println("STATE JacksOrBetter");
+				System.out.println(firstJatekos+ " nyert! Jacks Or Better!");
+				return;
+			}
+			
+			pw.println("STATE Lose");
+			System.out.println(firstJatekos+ " vesztett!");
+			return;
+			
+		//}catch(IOException io){
+		//	System.out.println("Szerver irasi hiba!");
+		//}
 	}
 
 	
