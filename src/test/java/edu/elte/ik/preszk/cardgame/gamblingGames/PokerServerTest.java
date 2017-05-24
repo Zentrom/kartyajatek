@@ -1,5 +1,7 @@
 package edu.elte.ik.preszk.cardgame.gamblingGames;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +18,12 @@ public class PokerServerTest {
 	public void test() {
 		//GIVEN
 		//WHEN
-		PokerServer server = new PokerServer();
+		try {
+			PokerServer server = new PokerServer();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//THEN
 	}
 	
