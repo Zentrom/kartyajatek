@@ -11,10 +11,16 @@
     -Passziánsz játék implementáció.
     * Treffnem.java 
     -Treff-nem játék implementáció.
+      * TreffPanel.java 
+    -Grafikus interfész a játékhoz.
     * SzinreSzin.java 
     -Színre-szín játék implementáció.
+      * SzinPanel.java 
+    -Grafikus interfész a játékhoz.
     * Parkereso.java 
     -Párkereső kártya-játék implementáció.
+      * ParkeresoPanel.java 
+    -Grafikus interfész a játékhoz.
   * SzerencseJatek.java
   -Szerencsejátékos kártyajátékok menüje. 
   -Be kell lépni/regisztrálni(adatok "data" fileba).
@@ -22,10 +28,12 @@
     -BlackJack kliens implementációja.
     * BlackJackServer.java
     -BlackJack szerver implementáció.
-    * BJCardHandler.java
+      * BJCardHandler.java
     -Segédosztály mely lekezeli a kártyákat a BlackJack pontszámainak megfelelően.
-    * Poker.java
-    -Póker implementációja.
+    * PokerServer.java
+    -Póker szerver implementációja.
+    * PokerClient.java
+    -Póker kliens implementációja.
 * Deck.java 
 -Paklit létrehoz&visszaad egy Map<szin,Map<szam,érték>>-ben.
 -Paraméter hamis:francia/igaz:magyar
