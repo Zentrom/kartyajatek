@@ -43,18 +43,11 @@ public class BlackJackClient {
 
 			while (folytatas != 0) {
 				pw.println(getUsername());
-<<<<<<< HEAD
+				bet = 9999999;
 
 				if (sc.nextLine().equals("giveBets")) {
 					while (bet > getVagyon()) {
 						try {
-=======
-				bet=9999999;
-				
-				if(sc.nextLine().equals("giveBets")){
-					while(bet > getVagyon()){
-						try{
->>>>>>> 43f8dcf67941b757dd89dd60ce8e5e2385a447a6
 							System.out.println("Kerem adja meg mennyit szeretne fogadni!");
 							bet = Integer.parseInt(stdin.nextLine());
 						} catch (NumberFormatException num) {
@@ -133,6 +126,7 @@ public class BlackJackClient {
 
 	/**
 	 * Visszaadja a felhasználó nevét
+	 * 
 	 * @return a felhasználó neve
 	 */
 	public String getUsername() {
@@ -141,6 +135,7 @@ public class BlackJackClient {
 
 	/**
 	 * Vissza adja a felhasználó vagyonát
+	 * 
 	 * @return a felhasználó vagyona
 	 */
 	public int getVagyon() {
@@ -149,7 +144,9 @@ public class BlackJackClient {
 
 	/**
 	 * Beállítja a felhasználó vagyonát
-	 * @param vagyon a felhasználó vagyona
+	 * 
+	 * @param vagyon
+	 *            a felhasználó vagyona
 	 */
 	public void setVagyon(int vagyon) {
 		this.vagyon = vagyon;
@@ -157,7 +154,9 @@ public class BlackJackClient {
 
 	/**
 	 * Beállítja a felhasználó nevét
-	 * @param username a felhasználó neve
+	 * 
+	 * @param username
+	 *            a felhasználó neve
 	 */
 	public void setUsername(String username) {
 		this.username = username;
