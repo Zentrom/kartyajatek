@@ -6,6 +6,8 @@
 package edu.elte.ik.preszk.cardgame.panel;
 
 import edu.elte.ik.preszk.cardgame.Deck;
+import edu.elte.ik.preszk.cardgame.controller.casualGames.TreffNemController;
+
 import java.util.Random;
 
 /**
@@ -17,17 +19,16 @@ public class TreffPanel extends javax.swing.JFrame {
     /**
      * Creates new form TreffPanel
      */
-    public TreffPanel() {
+    public TreffPanel(TreffNemController treffNemController) {
+    	this.treffNemController = treffNemController;
         initComponents();
     }
     
     String choose = "";
     int pontszam = 0;
-    Deck pakli = new Deck(false);
     Random random = new Random();
+    private TreffNemController treffNemController;
     
-    String szintomb[] = {"Clover" , "Spades" , "Hearts" , "Diamonds"};
-    int szamtomb[] = {2,3,4,5,6,7,8,9,10,11,20,30,40};
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,7 +54,7 @@ public class TreffPanel extends javax.swing.JFrame {
         igenButton.setText("IGEN");
         igenButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                igenButtonMouseClicked(evt);
+                igenButtonMouseClicked();
             }
         });
         igenButton.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +82,7 @@ public class TreffPanel extends javax.swing.JFrame {
         jButton1.setText("NEM");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton1ActionPerformed();
             }
         });
 
@@ -148,17 +149,11 @@ public class TreffPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_pontszamTextActionPerformed
 
 
-    private void igenButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_igenButtonMouseClicked
-        String szin = szintomb[random.nextInt(4)];        
-        int szam = szamtomb[random.nextInt(13)];
-        
-        if(szin.equals("Clover")){
-            pontszam = pontszam + 1;
-            pontszamText.setText(Integer.toString(pontszam));
-        } else
-            pontszam = pontszam - 1;
-            pontszamText.setText(Integer.toString(pontszam));
-        kartya.setText(pakli.getLap(szin, szam));
+    private void igenButtonMouseClicked() {//GEN-FIRST:event_igenButtonMouseClicked
+        String kovetkezoKartya = treffNemController.getKovetkezoKartya();
+        pontszam = treffNemController.getPontszam(pontszam);
+        pontszamText.setText(Integer.toString(pontszam));
+        kartya.setText(kovetkezoKartya);
     }//GEN-LAST:event_igenButtonMouseClicked
 
     private void kartyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kartyaActionPerformed
@@ -169,11 +164,9 @@ public class TreffPanel extends javax.swing.JFrame {
         
     }//GEN-LAST:event_igenButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String szin = szintomb[random.nextInt(4)];        
-        int szam = szamtomb[random.nextInt(13)];
-        pontszamText.setText(Integer.toString(pontszam));
-        kartya.setText(pakli.getLap(szin, szam));
+    private void jButton1ActionPerformed() {//GEN-FIRST:event_jButton1ActionPerformed
+        String kovetkezoKartya = treffNemController.getKovetkezoKartya();
+        kartya.setText(kovetkezoKartya);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -206,7 +199,8 @@ public class TreffPanel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TreffPanel().setVisible(true);
+            	TreffNemController treffNemController = new TreffNemController(new Deck(false), new Random());
+                new TreffPanel(treffNemController).setVisible(true);
             }
         });
     }

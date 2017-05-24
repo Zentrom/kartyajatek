@@ -2,6 +2,8 @@ package edu.elte.ik.preszk.cardgame.casualGames;
 
 import edu.elte.ik.preszk.cardgame.panel.TreffPanel;
 import edu.elte.ik.preszk.cardgame.Deck;
+import edu.elte.ik.preszk.cardgame.controller.casualGames.TreffNemController;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -34,7 +36,8 @@ public class Treffnem {
 	 * Elindítja a Treffnem kártyajátékot.
 	 */
     public void game(){
-        TreffPanel panel = new TreffPanel();
+    	TreffNemController treffNemController = new TreffNemController(new Deck(false), new Random());
+        TreffPanel panel = new TreffPanel(treffNemController);
         panel.setVisible(true);
         /*while(true){ 
             System.out.println("Ezt a játékot francia kártyával játszák. Tippeld meg hogy a következő kártya treff lesz e ;)");
