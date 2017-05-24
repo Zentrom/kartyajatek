@@ -117,6 +117,7 @@ public class KartyaJatekTest {
 		//GIVEN
 		try {
 			Mockito.when(br.readLine()).thenReturn("4");
+			Mockito.doNothing().when(szinreSzin).game();
 			Mockito.doThrow(IOException.class).when(szinreSzin).game();
 		} catch (IOException e) {
 		}
@@ -147,6 +148,7 @@ public class KartyaJatekTest {
 		//GIVEN
 		try {
 			Mockito.when(br.readLine()).thenReturn("5");
+			Mockito.doNothing().when(parkereso).game();
 			Mockito.doThrow(IOException.class).when(parkereso).game();
 		} catch (IOException e) {
 		}
